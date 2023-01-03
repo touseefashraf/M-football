@@ -1,0 +1,184 @@
+<section class="home-section">
+    <div class="inner-content">
+        <div class="video-wrapper">
+            <video class="vid" autoplay="autoplay" muted="muted" loop="loop">
+                <source src="/assets/images/Pexels-Videos-2657251.mp4" type="video/mp4" />
+            </video>
+
+            <div class="overlay">
+                <h1>Madrid Football Cup</h1>
+                <h2>Tournaments, Tours and Coaching</h2>
+                <hr>
+                <hr class="hr1">
+                <p>Tailor-made football experiences all over the world. Play against international footballacademies. Compete in high level youth tournaments. Develop your players on and off the pitch.</p>
+                <button (click)="scroll(target)">
+                    <a>Let’s go to Madrid</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="news-section">
+    <div class="news">
+        <hr class="hr-1">
+        <h3>News</h3>
+        <hr class="hr-2">
+    </div>
+    <div class="news-container">
+        <div class="news-icon-1">
+            <img src="/assets/images/left-arrow.png" alt="">
+        </div>
+        <ng-container *ngIf="newsDataStatus == 'fetching'">
+            <div class="img-spinner">
+                <img src="/assets/images/spinner.svg" alt="">
+            </div>
+        </ng-container>
+        <div *ngIf="newsDataStatus == 'done'" class="center-box">
+            <ng-container *ngFor="let news of newsList">
+                <div class="news-content">
+                    <div class="news-img">
+                        <img [defaultImage]="spinnerSVG" [lazyLoad]="api.newsThumbnailUrl(news.id)">
+                        <!-- <img src="/assets/images/img1.png" alt=""> -->
+                    </div>
+                    <div class="content">
+                        <div class="news-date">
+                            <p><i class="fa fa-calendar"></i> {{days(news.date)}} days ago</p>
+                        </div>
+                        <div class="news-inner-content">
+                            <h1>{{news.title}}</h1>
+                            <p>{{news.summary}}</p>
+                            <button (click)="newsDetail(news.id)">
+                                <a>Read More</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="news-icon-2">
+            <img src="/assets/images/right-arrow.png" alt="">
+        </div>
+    </div>
+    <!-- <div class="news-btn-arrow">
+        <div class="left"><img src="/assets/images/left-arrow.png" alt=""></div>
+        <div class="right"><img src="/assets/images/right-arrow.png" alt=""></div>
+    </div> -->
+    <div class="news-button">
+        <button [routerLink]="[ '/news' ]" class="btn-news">All News</button>
+    </div>
+</section>
+
+<section class="search-section">
+    <div class="search">
+        <div class="search-content">
+            <div class="items">
+                <div class="img">
+                    <img src="/assets/images/icon-age.png" alt="">
+                </div>
+                <div class="head">
+                    <h5>Age Category</h5>
+                </div>
+                <div class="cat-option">
+                    <select id="category" [(ngModel)]="filters.age_category">
+                        <option [disabled]="true" value="">Any</option>
+                        <ng-container *ngFor="let a of age">
+                            <option [value]="a">U{{a}}</option>
+                        </ng-container>
+                        <!-- <option value="any1">10 - 15</option>
+                        <option value="any1">15 - 20</option>
+                        <option value="any1">20 - 25</option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="items">
+                <div class="img">
+                    <img src="/assets/images/icon-type.png" alt="">
+                </div>
+                <div class="head">
+                    <h5>Type</h5>
+                </div>
+                <div class="type">
+                    <select id="type" [(ngModel)]="filters.tournament_type">
+                        <option [disabled]="true" value="">Select type</option>
+                        <option value="tour">Tour</option>
+                        <option value="tournament">Tournament</option>
+                        <option value="trip">Coaching Educational Trips</option>
+                    </select>
+                </div>
+            </div>
+            <div class="items">
+                <div class="img">
+                    <img src="/assets/images/appointment.png" alt="">
+                </div>
+                <div class="head">
+                    <h5>Dates</h5>
+                </div>
+                <div class="date">
+                    <input type="text" class="fadeIn" bsDatepicker [bsConfig]="{minMode:'year',  adaptivePosition: true, dateInputFormat: 'YYYY' }" placeholder="Enter Date" [(ngModel)]="filters.year" />
+                </div>
+            </div>
+            <div class="items">
+                <div class="img">
+                    <img src="/assets/images/icon-gender.png" alt="">
+                </div>
+                <div class="head">
+                    <h5>Gender</h5>
+                </div>
+                <div class="gender">
+                    <select id="gender" [(ngModel)]="filters.gender">
+                        <option value="">Both</option>
+                        <option value="boys">Boys</option>
+                        <option value="girls">Girls</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- <button (click)="search()" [disabled]="searchLoading" [ngClass]="searchLoading?'in-progress':''" class="btn-search">Search -->
+        <button (click)="search()" class="btn-search">Search
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</section>
+
+<ng-container *ngIf="dataStatus == 'fetching'">
+    <div class="img-spinner">
+        <img src="/assets/images/spinner.svg" alt="">
+    </div>
+</ng-container>
+<section #target class="tournament-section">
+    <ng-container *ngIf="dataStatus == 'done'">
+        <div class="tournament-card">
+            <ng-container *ngIf="cardlength">
+                <ng-container *ngFor="let c of cardlength">
+                    <div class="cards">
+                        <div class="card-top">
+                            <p *ngIf="c.tournament_type=='tournament'" class="date">{{c.start_date | date: 'MMM y'}} - {{c.end_date | date: 'MMM y'}}</p>
+                            <p *ngIf="c.tournament_type=='tour' || c.tournament_type=='trip'" class="date">{{c.name | titlecase }}</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img style="cursor: pointer;" [defaultImage]="spinnerSVG" [lazyLoad]="api.tournamentThumbnailUrl(c.id)" (click)="tournamentDetail(c.id,c.tournament_type)">
+                            </div>
+                            <div class="card-text">
+                                <h1 (click)="tournamentDetail(c.id,c.tournament_type)">{{c.name}}</h1>
+                                <p>{{c.description}}</p>
+                                <div class="card-btn">
+                                    <div class="back-color tournament">{{c.tournament_type.charAt(0).toUpperCase() + c.tournament_type.slice(1)}}</div>
+                                    <div class="back-color level"><strong>Level: </strong>{{c.level}}</div>
+                                    <div class="back-color gender"><img src="/assets/images/gender-icon.png" class="gen-icon"> {{c.gender}}</div>
+                                    <div class="back-color age"><strong>Age: </strong> {{c.age_category}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="cardlength.length === 0">
+                <h1 class="dataUnavailable">No Data Available</h1>
+            </ng-container>
+        </div>
+    </ng-container>
+</section>

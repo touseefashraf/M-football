@@ -1,0 +1,175 @@
+<!-- <p>
+    team works!
+</p> -->
+
+<div class="row m-3 no-gutters">
+    <div class="col-md-12 mb-1">
+        <div class="d-flex justify-content-between">
+            <h4>Teams</h4>
+            <button class="green sm mb-2" (click)="openModalSubject(subject, -1)">Add Team</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Full Name</th>
+                        <th>Short Name</th>
+                        <th>Country</th>
+                        <th width="300">Description</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <ng-container *ngIf="dataStatus == 'fetching'">
+                    <tbody [appSkeletonTabelLoader]="loaderOptions"></tbody>
+                </ng-container>
+                <ng-container *ngIf="dataStatus == 'done'">
+                    <tbody *ngIf="teamList.length > 0; else noDataFound">
+                        <tr *ngFor="let d of teamList; let i = index">
+                            <td class="td-image-container">
+                                <img [defaultImage]="spinnerSVG" [lazyLoad]="getImg(d.id)" width="99" height="66">
+                            </td>
+                            <td>{{d.full_name}} </td>
+                            <td>{{d.short_name}} </td>
+                            <td>{{d.country.name}} </td>
+                            <td>
+                                <app-read-more [text]="d.description" [maxLength]="130"></app-read-more>
+                            </td>
+                            <td class="text-center">
+
+                                <button type="button" class="sm green" (click)="openModalSubject(subject,i)">Edit</button>
+                                <button type="button" class="sm red" (click)="deletingIndex=i; deletePop=pop; selectedId=d.id" #pop="bs-popover" [popover]="deleteTemplate" placement="left" [outsideClick]="true">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <ng-template #noDataFound>
+                        <tbody>
+                            <tr>
+                                <td colspan="6">
+                                    <app-no-data-found></app-no-data-found>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </ng-template>
+                </ng-container>
+            </table>
+        </div>
+        <nav aria-label="Page navigation example" *ngIf="dataStatus == 'done'">
+            <ul class="pagination justify-content-center  mt-3">
+                <li class="page-item" *ngIf="pagination.prev_page_url != null">
+                    <a class="page-link" href="javascript: void(0)" tabindex="-1" (click)="setPagination(page-1)">Previous</a>
+                </li>
+                <li class="page-item disabled" *ngIf="pagination.prev_page_url == null">
+                    <a class="page-link" href="javascript: void(0)" tabindex="-1">Previous</a>
+                </li>
+
+                <ng-container *ngFor="let p of [].constructor(pagination.last_page); let i=index">
+                    <li [class]="page==(i+1) ? 'page-item active' : 'page-item'">
+                        <a class="page-link" href="javascript: void(0)" (click)="setPagination(i+1)">{{i+1}}</a>
+                    </li>
+                </ng-container>
+
+                <li class="page-item" *ngIf="pagination.next_page_url != null">
+                    <a class="page-link" href="javascript: void(0)" tabindex="-1" (click)="setPagination(+page+1)">Next</a>
+                </li>
+                <li class="page-item disabled" *ngIf="pagination.next_page_url == null">
+                    <a class="page-link" href="javascript: void(0)" tabindex="-1">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<ng-template #subject>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add Team</h4>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="teamForm" #f="ngForm">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6 mb-1">
+                            <label class="mb-0">Full Name<span class="mendatory">*</span></label>
+                            <input formControlName="full_name" type="text" class="form-control mt-0" placeholder="Enter Full Name" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.full_name, f)" class="errors">
+                                <p *ngIf="g.full_name.errors.required">Full name is required</p>
+                                <p *ngIf="g.full_name.errors.maxlength">Full name should be 100 Characters</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-1">
+                            <label class="mb-0">Short Name<span class="mendatory">*</span></label>
+                            <input formControlName="short_name" type="text" class="form-control mt-0" placeholder="Enter Short Name" [ngClass]="{'form-submitted': f.submitted}">
+                            <div *ngIf="ui.checkErrors(g.short_name, f)" class="errors">
+                                <p *ngIf="g.short_name.errors.required">Short name is required</p>
+                                <p *ngIf="g.short_name.errors.maxlength">Short name should be 100 Characters</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Countries<span class="mendatory">*</span></label>
+                                <select formControlName="country_id" class="fadeIn" [ngClass]="{'form-submitted': f.submitted}">
+                                    <option [value]="null">Select Country</option>
+                                    <option *ngFor="let d of countries" [value]="d.id">{{d.name}}</option>
+                                </select>
+                                <div *ngIf="ui.checkErrors(g.country_id, f)" class="errors">
+                                    <p *ngIf="g.country_id.errors.required">Country is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label class="mb-0">Description</label>
+                            <textarea formControlName="description" class="form-control mt-0" [ngClass]="{'form-submitted': f.submitted}" placeholder="Enter Your Description"></textarea>
+                            <div *ngIf="ui.checkErrors(g.description, f)" class="errors">
+                                <p *ngIf="g.description.errors.maxlength">Short name should be 1000 Characters</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tut-pro-photo">
+                        <img [src]="thumbnail" id="banner-img">
+                        <input type="file" style="display: none;" id="thumbnail-image" (change)="onThumbnailChange($event, cropperModal)">
+                        <div class="ml-4 text-center">
+                            <button type="button" class="green sm" (click)="browseThumbnail($event)" style="min-width: 140px">Browse Picture</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" appSmartClick (smartClick)="saveTeam(teamForm, f)" class="green sm m-1">save</button>
+            <button type="button" class="red sm ml-1" (click)="cancelTeamButton(f)">Cancel</button>
+
+        </form>
+    </div>
+</ng-template>
+<ng-template #cropperModal>
+    <div class="modal-body">
+        <ng-scrollbar class="modal-scrollbar">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrapper">
+                        <h2 class="title" style="font-size: 20px;">Adjust Image Size</h2>
+                        <div>
+                            <button type="button" class="sm red" (click)="doneCroppingThumbnail()">Done</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="90/115" [onlyScaleDown]="true" [roundCropper]="false" format="png" outputType="base64" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [alignImage]="'center'">
+                    </image-cropper>
+                </div>
+            </div>
+        </ng-scrollbar>
+    </div>
+</ng-template>
+
+<ng-template #deleteTemplate>
+    <p>Are you sure that you want to delete?</p>
+    <button class="xs black" (click)="deletePop.hide()">No</button>
+    <button class="xs red" (click)="deleteTeam()">Yes</button>
+</ng-template>

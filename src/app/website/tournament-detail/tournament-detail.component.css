@@ -1,0 +1,792 @@
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    outline: none;
+}
+.section1 {
+    height: 515px;
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.count-down {
+    width: 225px;
+    height: 95px;
+    background-color: #143960;
+    border-radius: 8px;
+    position: absolute;
+    top: 30px;
+    left: 70px;
+}
+.digit-box {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    max-height: 80px;
+}
+.digit p:nth-child(1) {
+    font-family: "Bebas Neue", cursive;
+    color: white;
+    font-size: 52px;
+    margin-top: -5px;
+    margin-bottom: 0px;
+}
+.digit p:nth-child(2) {
+    font-family: "Bebas Neue", cursive;
+    color: white;
+    font-size: 15px;
+    /* margin: 0; */
+    margin-top: -20px;
+    text-align: center;
+}
+
+.count-heading {
+    background-color: #29a9e1;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    width: 115px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    width: 100px;
+}
+.count-heading p {
+    margin-bottom: 0px;
+}
+.tour-info {
+    position: absolute;
+    left: 70px;
+    bottom: 30px;
+}
+.tour-info p {
+    color: white;
+}
+.tour-info > p:nth-child(2) {
+    font-size: 20px;
+    font-weight: 700;
+}
+.tour-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tour-detail p{
+    margin-left: 10px;
+}
+.tour-detail p:nth-child(1){
+    margin-left: 0;
+}
+.img-spinner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-spinner img {
+    margin: 0;
+}
+.reg-btn {
+    background-color: #29a9e1;
+    position: absolute;
+    bottom: 70px;
+    right: 45px;
+    padding-left: 35px;
+    padding-right: 35px;
+    font-weight: 600;
+}
+.reg-btn:focus {
+    outline: none;
+}
+.sec-2,
+.sec-3,
+.sec-4,
+.sec-5 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.sec-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.sec-heading .heading {
+    margin-top: -15px;
+    background-color: white;
+    padding: 0 35px;
+    color: #143960;
+    font-weight: 600;
+}
+.line {
+    border: 1px solid #143960;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.team-logo {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.team-logo .btn-left,
+.btn-right {
+    background-color: #28965a;
+    color: white;
+    font-size: 30px;
+}
+.cards {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    /* height: 170px; */
+    /* margin-top: 50px; */
+    overflow-x: hidden;
+    padding-top: 50px;
+}
+.sec-3 {
+    width: 100%;
+}
+.news-container {
+    display: flex;
+    margin: 60px 0 0 0;
+}
+.news-container h3{
+    color: #143960;
+    margin-left:auto ;
+    margin-right: auto;
+}
+.news-icon-1 {
+    width: 5%;
+    height: 270px;
+    background-color: #fff;
+    position: relative;
+    border-radius: 0 10px 10px 0;
+    display: none;
+}
+.news-icon-2 {
+    width: 5%;
+    height: 270px;
+    background-color: #fff;
+    position: relative;
+    border-radius: 10px 0 0 10px;
+    display: none;
+}
+.news-icon-1 img {
+    width: 45px;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translateY(-50%);
+}
+.news-icon-2 img {
+    width: 45px;
+    position: absolute;
+    top: 50%;
+    right: 30%;
+    transform: translateY(-50%);
+}
+.center-box {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.news-content {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 45%;
+    /* margin: 0 20px 0 20px; */
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.news-img {
+    width: 180px;
+}
+
+.news-img img {
+    border-radius: 10px 0 0 10px;
+    width: auto;
+    height: 250px;
+}
+.content {
+    padding: 12px 20px 0 20px;
+    background-color: #f2f2f2;
+    border-radius: 0 10px 10px 0;
+    min-width: 427px;
+}
+.news-date {
+    color: #808080;
+}
+.news-date p {
+    margin-bottom: 1px;
+}
+i.fa.fa-calendar {
+    margin: 0 15px 0 0;
+}
+.news-inner-content {
+    position: relative;
+}
+.news-inner-content h1 {
+    color: #143960;
+    font-size: 20px;
+    width: 90%;
+    font-weight: 800;
+    overflow: hidden;
+}
+.news-inner-content p {
+    color: #143960;
+    width: 98%;
+    font-size: 14px;
+    /* margin: 20px 0 50px 0; */
+    font-weight: 500;
+    margin-bottom: 1px;
+    height: 127px;
+    overflow: hidden;
+}
+.news-inner-content button {
+    background-color: #3a7d44;
+    outline: none;
+    float: right !important;
+    margin: 10px 0;
+}
+.news-inner-content a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0;
+}
+.btn-news {
+    background-color: #29a9e1;
+    margin: 36px 0 40px 0;
+    font-weight: 800;
+    word-spacing: 2px;
+    outline: none;
+    padding: 10px 22px;
+}
+.sec-3 > button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #29a9e1;
+    font-weight: 600;
+    margin-top: 50px;
+    outline: none;
+}
+.tour-highlight {
+    width: 85%;
+    border: 2px dashed #9d9d9d;
+    margin: 60px auto 60px auto;
+    border-radius: 10px;
+}
+.tour-highlight > .heading {
+    margin-top: -15px;
+    background-color: white;
+    padding: 0 35px;
+    color: #143960;
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+.tour-highlight-img {
+    margin: 60px;
+    margin: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tour-highlight-img img {
+    width: 245px;
+    height: 180px;
+}
+.tour-highlight-img i {
+    font-size: 40px;
+}
+.forms-box {
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+.forms-box .form {
+    width: 45%;
+    border: 1px solid #9d9d9d;
+    min-height: 200px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+.forms-box .form h5 {
+    color: #143960;
+    font-weight: 600;
+    text-align: center;
+}
+
+.forms-box .form textarea {
+    min-height: 282px;
+}
+.form-group {
+    margin: 10px 0;
+}
+.form-group label {
+    color: #143960;
+    font-weight: 600;
+}
+.f-4 {
+    padding: 0 !important;
+    border: none !important;
+}
+.f-4 textarea {
+    width: 100%;
+    height: 274px;
+}
+.f-4 h5 {
+    padding: 20px 0 30px 0;
+}
+.red-bar {
+    width: 100%;
+    height: 50px;
+    background-color: #9b0525;
+}
+.red-bar ul {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    margin: 0 20px;
+}
+.red-bar ul li {
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    word-spacing: 2px;
+    padding: 15px;
+}
+.red-bar ul li i {
+    padding-left: 10px;
+}
+.red-bar ul li:hover {
+    background-color: #c22c4c;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 5px 0 5px 12px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* .section1 img {
+    z-index: -1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0px 0px 1px 0px lightgray;
+} */
+.tour-card {
+    z-index: -1;
+    /* position: absolute;
+    top: 340px; */
+    background-color: #133960;
+    width: 100%;
+    height: 330px;
+    margin: -122px 0 0 0;
+}
+.tour-name {
+    color: honeydew;
+    text-align: center;
+    padding-top: 150px;
+}
+.tour-loc-date {
+    color: honeydew;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}
+.tour-loc-date i {
+    margin-right: 10px;
+}
+.tour-imgs > img {
+    border-radius: 25px;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    padding: 5px 10px 5px;
+    cursor: pointer;
+}
+.sp {
+    width: 70px;
+    text-align: center;
+}
+.section2 {
+    width: 100%;
+    top: 680px;
+    margin-top: 130px;
+}
+.section2 h5 {
+    text-align: center;
+    /* font-size:16px !important; */
+    color: #133960;
+    font-weight: 700;
+    margin-top: 60px;
+}
+.counter {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.count-box {
+    width: 150px;
+    height: 160px;
+    background-color: #133960;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.count-box p:nth-child(1) {
+    color: honeydew;
+    font-size: 100px;
+    font-family: "Bebas Neue", cursive;
+    margin-top: -15px;
+    text-align: center;
+}
+.count-box p:nth-child(2) {
+    color: honeydew;
+    font-size: 30px;
+    font-family: "Bebas Neue", cursive;
+    margin-top: -40px;
+    text-align: center;
+}
+
+.overview-text {
+    color: #133960;
+    width: 65%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.slider img {
+    max-width: 100%;
+}
+.part-teams {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.team-card {
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 10px 2%;
+    min-height: 150px;
+}
+.team-card img {
+    max-width: 130px;
+    margin-top: -50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+.card-txt {
+    /* text-align: center;
+    margin-top: -10px;
+    padding-bottom: 10px; */
+    /* text-align: center; */
+    /* margin-top: -10px; */
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-txt p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.card-txt p:nth-child(1) {
+    font-weight: 800;
+    max-width: 80px;
+    text-align: center;
+}
+.sendQuote {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #28965a;
+    font-weight: 500;
+    outline: none;
+}
+.sec-5 > button span {
+    font-weight: 700;
+}
+/* Extra small devices (portrait phones, less than 576px) */
+@media only screen and (max-width: 575.98px) {
+    .section1 {
+        background-position: center;
+    }
+    .section1 .count-down {
+        left: 55px;
+    }
+    .section1 .reg-btn {
+        bottom: 223px;
+        right: 120px;
+    }
+    .section1 .tour-info {
+        left: 27px;
+        bottom: 30px;
+    }
+
+    .forms-box > .form {
+        width: 100%;
+    }
+    .cards {
+        max-width: 250px;
+    }
+    .news-content .content {
+        padding-right: 0;
+    }
+    .news-icon-1,
+    .news-icon-2 {
+        width: 10%;
+    }
+    .news-content {
+        width: 75%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .news-inner-content {
+        padding-bottom: 30px;
+    }
+    .content > button {
+        right: 65px;
+        bottom: 10px;
+        outline: none;
+    }
+    .news-img,
+    .news-img img {
+        width: 100%;
+    }
+    .team-logo {
+        width: 100%;
+    }
+
+    .overview-text {
+        width: 75%;
+    }
+    .tour-highlight-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .red-bar ul {
+        margin: 0;
+        padding: 0;
+    }
+    .red-bar ul li {
+        padding: 22px 0 0 26px;
+    }
+    .news-icon-1 img {
+        width: 35px;
+        left: 8%;
+    }
+    .news-icon-2 img {
+        width: 35px;
+        right: 8%;
+    }
+    .news-icon-1 img {
+        width: 36px;
+        left: 20%;
+        display: none;
+    }
+    .news-content {
+        /* width: 61%; */
+        width: 80%;
+        flex-direction: column;
+    }
+    .news-img img {
+        width: 100%;
+        height: 348px;
+        border-radius: 10px 10px 0 0;
+    }
+    .content {
+        padding: 12px 20 0 20px;
+        min-height: 225px;
+        border-radius: 0 0 10px 10px;
+    }
+    .news-inner-content h1 {
+        font-size: 15px;
+    }
+    .news-inner-content p {
+        /* margin: 20px 0 22px 0; */
+        font-size: 10px;
+    }
+    .news-inner-content button {
+        /* padding: 10px 35px; */
+    }
+    .news-icon-2 img {
+        width: 36px;
+        right: 20%;
+        display: none;
+    }
+}
+/* Small devices (landscape phones, 576px and up) */
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+    .section1 {
+        background-position: center;
+    }
+    .forms-box {
+        width: 98%;
+    }
+    .forms-box > .form {
+        width: 49%;
+    }
+    .team-logo {
+        width: 90%;
+    }
+    .news-inner-content {
+        padding-bottom: 50px;
+    }
+    .content > button {
+        right: 45%;
+    }
+    .overview-text {
+        width: 75%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (min-width: 767.9px) and (max-width: 991.98px) {
+    .section1 img {
+        max-width: 500px;
+    }
+    /* .tour-card {
+        top: 320px;
+    } */
+    .count-box {
+        width: 120px;
+        height: 155px;
+        background-color: #133960;
+        border-radius: 10px;
+    }
+    .overview-text {
+        width: 75%;
+    }
+    .tour-highlight-img img {
+        width: 215px;
+    }
+    .tour-imgs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .f-4 textarea {
+        height: 302px;
+    }
+    .news-icon-1 {
+        width: 15%;
+        margin-top: 20%;
+    }
+    .news-icon-1 img {
+        width: 50px;
+    }
+    .news-content {
+        width: 65%;
+    }
+    .content {
+        padding: 12px 20px 0 20px;
+    }
+    .news-inner-content p {
+        /* margin: 20px 0 35px 0; */
+    }
+    .news-inner-content button {
+        /* padding: 12px 45px; */
+    }
+    .news-icon-2 {
+        width: 15%;
+        margin-top: 20%;
+    }
+    .news-icon-2 img {
+        width: 50px;
+    }
+}
+/* Large devices (desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .part-teams {
+        width: 85%;
+    }
+    .tour-highlight-img img {
+        width: 245px;
+    }
+    .tour-imgs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .f-4 textarea {
+        height: 358px;
+    }
+    .content {
+        padding: 12px 20 0 20px;
+    }
+    .news-inner-content h1 {
+        font-size: 20px;
+        overflow: hidden;
+    }
+    .news-inner-content p {
+        font-size: 14px;
+        overflow: hidden;
+    }
+}
+@media (min-width: 1200px) {
+    .part-teams {
+        width: 71%;
+    }
+}

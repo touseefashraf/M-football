@@ -1,0 +1,116 @@
+/* HOME SECTION START */
+.home-section {
+    background-color: #eaeaea;
+}
+.home-inner-section {
+    width: 90%;
+    margin: 0 auto;
+}
+.inner-content {
+    position: relative;
+}
+.img {
+    width: 100%;
+    height: 450px;
+    object-fit: fill;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 450px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #f1f1f1;
+    padding: 20px 35px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.overlay h1 {
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0 0 0 25px;
+}
+.arrow-left.icon {
+    color: #fff;
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 17px;
+    background-color: currentColor;
+    cursor: pointer;
+}
+.arrow-left.icon:before {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: -5px;
+    width: 13px;
+    height: 13px;
+    border-top: solid 2px currentColor;
+    border-right: solid 2px currentColor;
+    transform: rotate(-135deg);
+}
+.img-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-spinner img {
+    margin: 0;
+}
+/* HOME SECTION END HERE */
+
+/* CONTENT SECTION START */
+.content-section {
+    background-color: #eaeaea;
+}
+.content-inner-section {
+    width: 90%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 32px 62px;
+    text-align: center;
+}
+.content-inner-section > h1 {
+    margin: 0;
+    color: #133960;
+}
+.content-heading h1 {
+    color: #143960;
+    font-size: 28px;
+    font-weight: 700;
+}
+.date {
+    color: #808080;
+}
+i.fa.fa-calendar {
+    margin: 0 15px 0 0;
+}
+.content-text p {
+    color: #143960;
+}
+/* CONTENT SECTION END HERE */
+
+/* MEDIA QUERY START START HERE FOR 768 PIXEL */
+@media screen and (max-width: 768px) {
+    .home-inner-section {
+        width: 95%;
+    }
+    .content-inner-section {
+        width: 95%;
+    }
+}
+
+/* MEDIA QUERY START START HERE FOR 425 PIXEL */
+@media screen and (max-width: 425px) {
+    .home-inner-section {
+        width: 100%;
+    }
+    .content-inner-section {
+        width: 100%;
+    }
+    .content-inner-section {
+        padding: 32px 32px;
+    }
+}

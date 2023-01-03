@@ -1,0 +1,19 @@
+<div class="box">
+
+    <div class="row m-3 no-gutters">
+        <div class="col-md-12 mb-2">
+            <div class="d-flex justify-content-between">
+                <h4>Home Main Video</h4>
+            </div>
+        </div>
+        <div class="col-md-12 mt-3">
+            <div class="tut-pro-photo">
+                <input type="file" style="display: none;" id="other-files" (change)="onDocumentChange($event)" multiple>
+                <button class="blue" *ngIf="uploading==false" (click)="browseFiles($event)">Browse Video (mp4)</button>
+                <img src = "/assets/images/rolling.svg" *ngIf="uploading" style="width: 100px;">                
+            </div>
+        <img *ngIf="uploading==false" [src] = "mainImage" class="w-100" >
+        </div>
+    </div>
+    
+</div>

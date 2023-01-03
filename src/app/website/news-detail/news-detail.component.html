@@ -1,0 +1,42 @@
+<section class="home-section">
+    <div class="home-inner-section">
+        <div class="inner-content">
+            <div class="image">
+                <img src="/assets/images/news-img.png" alt="" class="img">
+                <!-- <img [defaultImage]="spinnerSVG" [lazyLoad]="api.newsThumbnailUrl(newsId)" class="img"> -->
+            </div>
+            <div class="overlay">
+                <div class="overlay-top">
+                    <span [routerLink]="[ '/news' ]" class="arrow-left icon"></span>
+                    <h1> News</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<ng-container *ngIf="dataStatus == 'fetching'">
+    <div class="img-spinner">
+        <img src="/assets/images/spinner.svg" alt="">
+    </div>
+</ng-container>
+<ng-container *ngIf="newsDetail === null; else newsTemplete">
+    <!-- <img [defaultImage]="spinnerSVG"> -->
+    <section class="content-section">
+        <div class="content-inner-section">
+            <h1>No Data Available</h1>
+        </div>
+    </section>
+</ng-container>
+<ng-template #newsTemplete>
+    <section class="content-section">
+        <div class="content-inner-section">
+            <div class="content-heading">
+                <h1>{{newsDetail.title}}</h1>
+                <p class="date"><i class="fa fa-calendar"></i> {{days(newsDetail.date)}} days ago</p>
+            </div>
+            <div class="content-text">
+                    <div [innerHTML]="newsContent"></div>
+            </div>
+        </div>
+    </section>
+</ng-template>

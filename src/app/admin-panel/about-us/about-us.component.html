@@ -1,0 +1,20 @@
+<div class="main-container">
+    
+    <div class="row">
+        <div class="col-md-12 drag-drop-container">
+            <h4>About Us</h4>
+            <div class="images-containers-wrapper">
+                <div class="images-container">
+                    <div class="container">
+                        <p>Content</p>
+                        <quill-editor [(ngModel)]="dataToSend.content"></quill-editor>
+                        
+                    </div>
+                    <div class="container">
+                        <button class="btn sm red" type="button" (click)="save()"  >Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

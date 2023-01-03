@@ -1,0 +1,92 @@
+<header>
+    <div class="header-fixed">
+        <div class="top-header">
+            <div class="container-fluid">
+                <div style="margin-right:0" class="row">
+                    <div class="col-sm-12 text-right no-padding">
+                        <div class="linksContainer">
+                            <!-- <a class="headerLinks" [routerLink]="[ '/about-us' ]">About Us</a> -->
+                            <a class="headerLinks" [routerLink]="[ '/news' ]">News</a>
+                            <!-- <a class="headerLinks" [routerLink]="['/faq']">FAQ's</a> -->
+                            <div dropdownToggle class="btn-group user-dropdown btn-sm dropdown-main pointer headerLinks" dropdown>
+                                <p class="dropdown-toggle">Contact</p>
+                                <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+                                    <!-- <li class="nav-item"><a [routerLink]="[ '/contact-us' ]">Contact Us</a></li> -->
+                                    <li class="nav-item"><a [routerLink]="[ '/about-us' ]">About Us</a></li>
+                                    <li class="nav-item"><a [routerLink]="['/faq']">FAQ's</a></li>
+                                </ul>
+                            </div>
+                            <!-- <a class="headerLinks" *ngIf="!isAuthenticated" [routerLink]="['/login']"><i class="fa fa-lock"></i> Login</a> -->
+                            <a class="headerLinks" *ngIf="isAuthenticated" href="javascript:void(0)" (click)="logOut()"><i class="fa fa-lock"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md">
+                <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active"><img src="/assets/img/logo-new.png" class="logo" alt="img"></a>
+                <button class="navbar-toggler d-lg-none collapsed" (click)="isCollapsed = !isCollapsed" type="button" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault" [collapse]="isCollapsed" [isAnimated]="true">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a [routerLink]="[ '/tournament-list' ]">‏MFA Tournaments <i class="fa fa-angle-down"></i></a>
+                                <div class="dropdown-content">
+                                    <ng-container *ngFor="let type of typeList">
+                                        <ng-container *ngIf="type.tournament_type === 'tournament'">
+                                            <a (click)="tournamentDetail(type.id)">{{type.name}}</a>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a [routerLink]="[ '/tour-list' ]">‏MFA Tours <i class="fa fa-angle-down"></i></a>
+                                <div class="dropdown-content">
+                                    <ng-container *ngFor="let type of typeList">
+                                        <!-- <a>{{type.tournament_type === 'tour'? type.name: ''}}</a> -->
+                                        <ng-container *ngIf="type.tournament_type === 'tour'">
+                                            <a (click)="tourDetail(type.id)">{{type.name}}</a>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a [routerLink]="[ '/coaching-trip-list' ]">‏MFA Coaching Education Trips <i class="fa fa-angle-down"></i></a>
+                                <div class="dropdown-content">
+                                    <ng-container *ngFor="let type of typeList">
+                                        <!-- <a>{{type.tournament_type === 'tour'? type.name: ''}}</a> -->
+                                        <ng-container *ngIf="type.tournament_type === 'trip'">
+                                            <a (click)="tourDetail(type.id)">{{type.name}}</a>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="[ '/' ]">‏MFA Academy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="[ '/' ]">‏Media
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item" *ngIf="isAdmin">
+                            <a class="button" [routerLink]="['/admin/dashboard']">
+                                <button class="button home-explore-btn btn blue-button-bg">Portal</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>

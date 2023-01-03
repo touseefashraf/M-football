@@ -1,0 +1,101 @@
+<div class="main-container">
+    <div class="title-wrapper">
+        <h4>News List</h4>
+        <button type="button" class="red pull-right" (click)="add()">Add News</button>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th class="col-actions" style="width: 170px">Actions</th>
+                </tr>
+            </thead>
+            <ng-container *ngIf="fetching">
+                <tbody [appSkeletonTabelLoader]="loaderOptions"></tbody>
+            </ng-container>
+            <ng-container *ngIf="!fetching">
+                <tbody *ngIf="newsList.length > 0">
+                    <tr *ngFor="let d of newsList; let i = index" id="row-{{i}}">
+                        <td>
+                            <img [defaultImage]="spinnerSVG" [lazyLoad]="api.newsThumbnailUrl(d.id)" width="80" height="80">
+                        </td>
+                        <td>
+                            <p>{{d.title}}</p>
+                        </td>
+                        <td>
+                            <p style="width: 114px;">{{moment(d.date).format(dateFormat)}}</p>
+                        </td>
+                        <td>
+                            <app-read-more [text]="d.summary" [maxLength]="100"></app-read-more>
+                        </td>
+                        <td class="project-sample-status">
+                            <span *ngIf="d.status == 'publish'" class="green">Active</span>
+                            <span *ngIf="d.status == 'unpublish'" class="red">Inactive</span>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" class="sm green" (click)="edit(d.id)">Edit</button>
+                            <button type="button" class="sm red" (click)="deletingIndex=i; deletePop=pop; selectedId=d.id" #pop="bs-popover" [popover]="deleteTemplate" placement="left" [outsideClick]="true">Delete</button>
+
+                            <button *ngIf="d.status == 'unpublish'" type="button" class="sm green" (click)="statusConfirmingModal(changeStatus,d.id,i,'publish')">Publish News</button>
+                            <button *ngIf="d.status == 'publish'" type="button" class="sm red" (click)="statusConfirmingModal(changeStatus,d.id,i,'unpublish')">Unpublish News </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-container>
+            <ng-container *ngIf="!fetching">
+                <tbody *ngIf="newsList.length == 0">
+                    <tr>
+                        <td colspan="100">
+                            <app-no-data-found></app-no-data-found>
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-container>
+        </table>
+    </div>
+
+    <nav aria-label="Page navigation example" *ngIf="!fetching">
+        <ul class="pagination justify-content-center  mt-3">
+            <li class="page-item" *ngIf="pagination.prev_page_url != null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1" (click)="setPagination(page-1)">Previous</a>
+            </li>
+            <li class="page-item disabled" *ngIf="pagination.prev_page_url == null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1">Previous</a>
+            </li>
+
+            <ng-container *ngFor="let p of [].constructor(pagination.last_page); let i=index">
+                <li [class]="page==(i+1) ? 'page-item active' : 'page-item'">
+                    <a class="page-link" href="javascript: void(0)" (click)="setPagination(i+1)">{{i+1}}</a>
+                </li>
+            </ng-container>
+
+            <li class="page-item" *ngIf="pagination.next_page_url != null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1" (click)="setPagination(+page+1)">Next</a>
+            </li>
+            <li class="page-item disabled" *ngIf="pagination.next_page_url == null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<ng-template #deleteTemplate>
+    <p>Are you sure that you want to delete?</p>
+    <button class="xs black" (click)="deletePop.hide()">No</button>
+    <button class="xs red" (click)="delete()">Yes</button>
+</ng-template>
+
+
+<ng-template #changeStatus>
+    <div class="modal-body text-center">
+        <p>Are you sure that you want change the status to {{selectedStatus | titlecase}}?</p>
+        <button class="xs red" (click)="modalRef.hide()">No</button>
+        <button class="xs green" (click)="changeNewsStatus()">Yes</button>
+    </div>
+</ng-template>

@@ -1,0 +1,66 @@
+
+<div class="form-section">
+    <div class="contact-us-form">
+        <form [formGroup]="contactForm" (ngSubmit)="sendInquiry(contactForm,f)" #f="ngForm" *ngIf="formShow">
+
+            <div class="contact-us-heading">
+                <span>Contact</span>
+                <span class="bold">&nbsp;Us</span>
+            </div>
+            <div class="contact-info">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" placeholder="Full Name*" class="input-values" style="margin-left: 0px;"
+                            formControlName="name" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.name, f)" class="errors">
+                            <p *ngIf="g.name.errors.required">Name is required</p>
+                            <p *ngIf="g.name.errors.maxlength">Name limit is
+                                {{ g.name.errors.maxlength.requiredLength }} Characters</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="text" placeholder="Contact*" class="input-values" style="margin-left: 0px;" formControlName="contact_no" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.contact_no, f)" class="errors">
+                            <p *ngIf="g.contact_no.errors.required">Contact is required</p>
+                            <p *ngIf="g.contact_no.errors.maxlength">Contact limit is
+                                {{ g.contact_no.errors.maxlength.requiredLength }} Characters</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" placeholder="Email*" class="input-values" style="margin-left: 0px;" formControlName="email" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.email, f)" class="errors">
+                            <p *ngIf="g.email.errors.required">Email is required</p>
+                            <p *ngIf="g.email.errors.maxlength">Email limit is
+                                {{ g.email.errors.maxlength.requiredLength }} Characters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea placeholder="Message*" rows="5" class="input-message" style="margin-left: 0px;" formControlName="message" [ngClass]="{'form-submitted': f.submitted}"></textarea>
+                    <div *ngIf="ui.checkErrors(g.message, f)" class="errors">
+                        <p *ngIf="g.message.errors.required">Message is required</p>
+                        <p *ngIf="g.message.errors.maxlength">Message limit is
+                            {{ g.message.errors.maxlength.requiredLength }} Characters</p>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button type="submit" class="submit-button">SUBMIT</button>
+
+            </div>
+
+
+        </form>
+        <div class="thanks-msg" *ngIf="!formShow">
+            <h3>Thanks for your Message!</h3>
+            <p>A dedicated team member will be contacting you shortly to discuss your
+                query in detail and to provide whatever assistance you need.</p>
+        </div>
+    </div>
+</div>

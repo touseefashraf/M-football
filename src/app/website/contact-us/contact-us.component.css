@@ -1,0 +1,354 @@
+
+section.contect-section {
+    padding: 0 0 0 0;
+}
+.contactBlock {
+    text-align: center;
+    padding: 30px 10px;
+}
+.section {
+    background-color: #f7f5f0;
+    padding: 30px 0;
+    text-align: center;
+}
+.title {
+    margin: 0 0 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 26px;
+}
+.description {
+    margin: 25px 0;
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 400;
+}
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 50px 0 25px 0;
+}
+.contact {
+    display: flex;
+    justify-content: center;
+}
+.contact > * {
+    margin: 0 15px;
+}
+.default button {
+    padding: 5px 25px !important;
+    border: 1px solid var(--light-cappu) !important;
+    background-color: transparent !important;
+    font-size: 18px !important;
+    color: var(--light-cappu) !important;
+    text-shadow: none !important;
+    text-transform: uppercase !important;
+    outline: none;
+    box-shadow: none;
+}
+.or {
+    font-size: 24px;
+    line-height: 1.92;
+    text-align: center;
+    text-transform: uppercase;
+    color: #484848;
+}
+
+@media only screen and (max-width: 425px) {
+    .contact {
+        flex-direction: column;
+    }
+    .title {
+        font-size: 16px;
+    }
+    .description {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+    .description {
+        font-size: 13px;
+    }
+    .or {
+        font-size: 13px;
+        line-height: 2;
+    }
+}
+
+.form-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-us-page{
+    background-color: #f7f7f7;
+    overflow-x: unset;
+
+}
+.contact-us-form{
+    padding: 20px 20px;
+    min-width: 600px;
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    /* margin-left: auto; */
+    margin-right: auto;
+}
+
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.bold{
+    font-weight: bold;
+    /*margin-left: 4px;*/
+}
+.contact-us-heading{
+    font-size: 30px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.green-line{
+    background-color: rgb(57 193 168);
+    width: 80px;
+    height: 5px;
+    margin-left: 27px;
+    margin-bottom: 25px;
+}
+.input-values{
+    color: #454545;
+    border: 2px solid #e1e1e1;
+    padding: 10px 13px;
+    margin-bottom: 10px;
+    background-color: #f7f5f0;
+    border-radius: 3px;
+    /* width: 19vw; */
+    width: 100%;
+}
+select:focus,
+input:focus,
+textarea:focus {
+    border-color: #f4f4f4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #133960;
+    outline: 0 none;
+}
+.input-values h5{
+    overflow: hidden;
+}
+.input-message{
+    color: #454545;
+    border: 2px solid #e1e1e1;
+    padding: 10px 13px;
+    margin: 15px 0px;
+    background-color: #fafafa;
+    border-radius: 3px;
+    width: 100%;
+}
+.thanks-msg{
+text-align: center;
+}
+.success{
+    text-align: center;
+
+    padding: 50px;
+}
+.success h1 {
+    /* font-size: 20px; */
+    margin-bottom: 20px;
+}
+.google-map iframe{
+    width:42vw;
+    height:400px;
+}
+.captcha-margin {
+    margin-top: 10px;
+}
+.submit-button{
+    background-color:#133960;
+    /* width: 42vw; */
+    width: 40%;
+
+    padding: 20px 0px;
+    font-size: 17px;
+    /* margin-top: 30px; */
+    font-weight: bold;
+}
+.our-contact-info{
+    /* width: 95%; */
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px 0px;
+    /* margin: 0px 60px; */
+}
+.our-contact-info p{
+    margin: 0px;
+    margin-bottom: 4px;
+}
+.contact-info-head{
+    margin-left: 5vw;
+    margin-top: 12vh;
+}
+.address{
+    width: 28vw;
+    padding: 40px 25px;
+    border:1px solid #eeeeee;
+    background-color: white;
+    /* margin-right: 2vw; */
+}
+
+.more-info{
+    width: 28vw;
+    padding: 40px 25px;
+    border:1px solid #eeeeee;
+    background-color: white;
+}
+.blue{
+    color: blue;
+}
+.cbox{
+    box-shadow: 0px 0px 20px .1px rgb(202, 202, 202);
+}
+.address-box{
+    display: flex;
+    justify-content: center;
+}
+.address-box p:nth-child(1){
+width: 50%;
+padding-right: 10px;
+border-right: 2px solid black;
+}
+.address-box p:nth-child(2){
+    width: 50%;
+    padding-left: 10px;
+}
+.cbox{
+    padding: 25px 20px;
+}
+.cbox h5{
+    margin-bottom: 10px;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+@media(max-width: 768px){
+    .success h1 {
+        font-size: 17px;
+        font-weight: 600;
+    }
+    .contact-us-form{
+        width: 100%;
+        min-width: auto;
+        /* padding-left: 60px; */
+    }
+    .form-container{
+        display: block;
+    }
+    .input-values{
+        /* width: 50px; */
+        /*height: 23vh;*/
+    }
+    .contact-us-page{
+        width: 100%;
+        /* overflow-x: hidden; */
+    }
+    .form-container{
+        width: 100%;
+    }
+    .contact-us-form{
+        width: 100%;
+    }
+    .input-message{
+        width: 100%;
+    }
+    .submit-button{
+        width: 100%;
+    }
+    .google-map iframe{
+        width: 100%;
+        padding: 10px 40px;
+    }
+    .address{
+        margin-bottom: 10px;
+        width: 87%;
+    }
+
+    .more-info{
+        width: 87%;
+        margin-bottom: 10px;
+    }
+    .our-contact-info{
+        flex-wrap: wrap;
+
+    }
+}
+@media(max-width: 425px){
+    .contact-us-heading{
+        margin-left: 2vw;
+    }
+    .contact-us-form{
+        margin: 0px;
+    width: 100%;
+    min-width: auto;
+    /* padding: 30px 40px; */
+    }
+    .form-container{
+        display: block;
+    }
+    .input-values{
+        width: 100%;
+
+    }
+
+    .contact-us-page{
+        overflow-x: hidden;
+        width: 100vw;
+    }
+    .form-container{
+        width: 100%;
+        margin: 0px;
+    }
+    .input-message{
+        width: 100%;
+    }
+    .submit-button{
+        /* margin: 15px !important; */
+        width: 100%;
+    }
+    .google-map iframe{
+        width:100%;
+        height:500px;
+        /* margin-left:3vw; */
+
+    }
+    .google-map{
+        margin:1vw;
+        padding: 0px;
+    }
+    .address{
+        width: 91vw;
+        /* margin-left: 1vw; */
+        margin-right: 0px;
+        margin-bottom: 10px;
+    }
+
+    .more-info{
+        width: 91vw;
+        /* margin-left: 1vw; */
+        margin-right: 0px;
+    }
+    .our-contact-info{
+        /* margin-left: 10px; */
+    }
+}
+
+

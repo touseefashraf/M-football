@@ -1,0 +1,121 @@
+<div class="main-container">
+    <div class="title-wrapper">
+        <h4>Tours List</h4>
+        <div class="row">
+            <!-- <div class="col-md-3 mb-3">
+                <label class="mb-1">Search by Type:</label>
+                <select [(ngModel)]="type">
+                    <option disabled [value]="null">Select type</option>
+                    <option value="tour">Tour</option>
+                    <option value="trip">Trip</option>
+                    <option value="tournament">Tournament</option>
+                </select>
+            </div> -->
+            <!-- <div class="col-md-4 mb-3 d-flex">
+                <div class="px-2">
+                    <label class="mb-0">&nbsp;</label>
+                    <div class="clear"></div>
+                    <button type="submit" (click)="search()" class="sm green"> <i class="fa fa-search"></i> Search </button>
+                </div>
+                <div class="px-2">
+                    <label class="mb-0">&nbsp;</label>
+                    <div class="clear"></div>
+                    <button type="reset" (click)="reset()" class="sm green"> Clear Search </button>
+                </div>
+            </div> -->
+            <div class="col-md-12 mb-3 d-flex align-items-end justify-content-end">
+                <button type="button" class="red pull-right" (click)="add()">Create Tour</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <!-- <th>Start Date</th> -->
+                    <th>Description</th>
+                    <th class="col-actions" style="width: 170px">Actions</th>
+                </tr>
+            </thead>
+            <ng-container *ngIf="fetching">
+                <tbody [appSkeletonTabelLoader]="loaderOptions"></tbody>
+            </ng-container>
+            <ng-container *ngIf="!fetching">
+                <tbody *ngIf="list.length > 0">
+                    <tr *ngFor="let d of list; let i = index" id="row-{{i}}">
+                        <td>
+                            <img [defaultImage]="spinnerSVG" [lazyLoad]="api.tournamentThumbnailUrl(d.id)" width="80" height="80">
+                        </td>
+                        <td>
+                            <p>{{d.name}}</p>
+                        </td>
+                        <!-- <td>
+                            <p style="width: 114px;">{{moment(d.start_date).format(dateFormat)}}</p>
+                        </td> -->
+                        <td>
+                            <app-read-more [text]="d.description" [maxLength]="100"></app-read-more>
+                        </td>
+
+                        <td class="text-center">
+                            <button type="button" class="sm green" (click)="edit(d.id)">Edit</button>
+                            <button type="button" class="sm red" (click)="deletingIndex=i; deletePop=pop; selectedId=d.id" #pop="bs-popover" [popover]="deleteTemplate" placement="left" [outsideClick]="true">Delete</button>
+                            <button type="button" class="sm green" (click)="view(d.id, d.tournament_type)">View Requests</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-container>
+            <ng-container *ngIf="!fetching">
+                <tbody *ngIf="list.length == 0">
+                    <tr>
+                        <td colspan="100">
+                            <app-no-data-found></app-no-data-found>
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-container>
+        </table>
+    </div>
+
+    <nav aria-label="Page navigation example" *ngIf="!fetching">
+        <ul class="pagination justify-content-center  mt-3">
+            <li class="page-item" *ngIf="pagination.prev_page_url != null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1" (click)="setPagination(page-1)">Previous</a>
+            </li>
+            <li class="page-item disabled" *ngIf="pagination.prev_page_url == null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1">Previous</a>
+            </li>
+
+            <ng-container *ngFor="let p of [].constructor(pagination.last_page); let i=index">
+                <li [class]="page==(i+1) ? 'page-item active' : 'page-item'">
+                    <a class="page-link" href="javascript: void(0)" (click)="setPagination(i+1)">{{i+1}}</a>
+                </li>
+            </ng-container>
+
+            <li class="page-item" *ngIf="pagination.next_page_url != null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1" (click)="setPagination(+page+1)">Next</a>
+            </li>
+            <li class="page-item disabled" *ngIf="pagination.next_page_url == null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<ng-template #deleteTemplate>
+    <p>Are you sure that you want to delete?</p>
+    <button class="xs black" (click)="deletePop.hide()">No</button>
+    <button class="xs red" (click)="delete()">Yes</button>
+</ng-template>
+
+
+<!-- <ng-template #changeStatus>
+    <div class="modal-body text-center">
+        <p>Are you sure that you want change the status to {{selectedStatus | titlecase}}?</p>
+        <button class="xs red" (click)="modalRef.hide()">No</button>
+        <button class="xs green" (click)="changeNewsStatus()">Yes</button>
+    </div>
+</ng-template> -->

@@ -1,0 +1,241 @@
+/* HOME SECTION START */
+.home-section {
+    background-color: #eaeaea;
+}
+.home-inner-section {
+    width: 90%;
+    margin: 0 auto;
+}
+.inner-content {
+    position: relative;
+}
+.img {
+    width: 100%;
+    height: 100px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    color: #f1f1f1;
+    padding: 26px 20px 26px;
+}
+.overlay h1 {
+    font-weight: 500;
+    margin: 0;
+}
+/* HOME SECTION END HERE */
+
+/* NEWS SECTION START */
+.faq-section {
+    background-color: #eaeaea;
+}
+.faq-inner-section {
+    width: 90%;
+    margin: 0 auto;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 20px 30px;
+}
+.inner-left {
+    width: 55%;
+    overflow: hidden;
+}
+.faq-questions-section {
+    color: #143960;
+    margin: 0 30px 0 0;
+}
+.faq-question {
+    display: flex;
+}
+.faq-question h1 {
+    margin: 0;
+    padding: 0 30px 0 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+.faq-question p {
+    margin: 2px 0 1rem 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+.faq-answer {
+    display: flex;
+    padding: 0 0 40px 0;
+}
+.faq-answer h1 {
+    margin: 0;
+    padding: 0 30px 0 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #9d9d9d;
+}
+.faq-answer p {
+    margin: 0 0 1rem 0;
+    font-size: 15px;
+    font-weight: 500;
+}
+h1.dataUnavailable {
+    padding: 50px 0;
+    color: #143960;
+    text-align: center;
+}
+.img-spinner {
+    display: flex;
+}
+.img-spinner img {
+    width: 200px;
+    margin: 0 auto;
+}
+.inner-right {
+    width: 37%;
+}
+.newletters {
+    text-align: center;
+    color: #143960;
+    padding: 20px 20px 30px;
+    border-top: 3px dashed #143960;
+    border-bottom: 3px dashed #143960;
+    background-color: #f8f8f8;
+    height: fit-content;
+    margin: 0px 20px 0 30px;
+}
+.newletter-img img {
+    width: 100px;
+}
+.newletters h2 {
+    padding: 10px 0;
+    margin: 0;
+    font-weight: 600;
+    font-size: 30px;
+}
+.newletters input {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #143960;
+    outline: none;
+}
+.newletter-line {
+    padding: 60px 0 0 0;
+}
+.newletter-line .hr-1 {
+    height: 1px;
+    width: 16%;
+    text-align: left;
+    margin-left: 0;
+    border-width: 0;
+    background-color: #143960;
+    border-radius: 5px;
+    margin: 0 0 0 10%;
+}
+.newletter-line h3 {
+    text-align: center;
+    color: #143960;
+    font-weight: 700;
+    margin: -19px 0 0 0;
+}
+.newletter-line .hr-2 {
+    height: 1px;
+    width: 16%;
+    text-align: right;
+    margin-right: 0;
+    border-width: 0;
+    background-color: #143960;
+    border-radius: 5px;
+    margin: -15px 20px 0px 73%;
+}
+.post-content {
+    margin: 35px 20px 0 30px;
+    background-color: rgba(22, 58, 95, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 10px;
+}
+.post-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.post-name {
+    color: #143960;
+}
+.post-bottom {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 0 0 0;
+}
+.post-bottom img {
+    margin: 0 12px 0 0;
+}
+.post-bottom p {
+    color: #143960;
+    margin: 0;
+}
+img.post-bottom-img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+.post-icon-content {
+    margin: 30px 20px 0 30px;
+}
+.post-icon-text p {
+    color: #143960;
+    font-size: 16px;
+}
+.post-icon-text {
+    text-align: center;
+}
+.post-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+img.social-icon {
+    margin: 0 18px;
+}
+/* NEWS SECTION END HERE */
+
+/* MEDIA QUERY START START HERE FOR 1024 PIXEL */
+@media screen and (max-width: 1024px) {
+    .newletter-line .hr-1 {
+        width: 13%;
+    }
+    .newletter-line .hr-2 {
+        width: 13%;
+        margin: -15px 20px 0px 77%;
+    }
+}
+
+/* MEDIA QUERY START START HERE FOR 768 PIXEL */
+@media screen and (max-width: 768px) {
+    .home-inner-section {
+        width: 95%;
+    }
+    .faq-inner-section {
+        width: 95%;
+        flex-direction: column;
+    }
+    .inner-left {
+        width: 100%;
+    }
+    .inner-right {
+        width: 65%;
+        margin: 0 auto 50px;
+    }
+}
+/* MEDIA QUERY START START HERE FOR 425 PIXEL */
+@media screen and (max-width: 425px) {
+    .home-inner-section {
+        width: 100%;
+    }
+    .faq-inner-section {
+        width: 100%;
+    }
+    .inner-right {
+        width: 95%;
+        margin: 0 auto 40px;
+    }
+}

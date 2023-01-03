@@ -1,0 +1,160 @@
+<section class="home-section">
+    <div class="home-inner-section">
+        <div class="inner-content">
+            <div class="image">
+                <img src="{{api.newsPageImageUrl()}}" alt="" class="img">
+            </div>
+            <div class="overlay">
+                <div class="overlay-top">
+                    <h1>News</h1>
+                </div>
+                <div *ngIf="dataStatus=='done'" class="overlay-bottom">
+                    <div class="overlay-bottom-content">
+                        <h1>{{latestList[0].title}}</h1>
+                        <p class="overlay-text">{{latestList[0].summary}}</p>
+                        <p class="date"><i class="fa fa-calendar"></i> {{days(latestList[0].date)}} days ago</p>
+                    </div>
+                    <div class="more-btn"><button><a [routerLink]="['/news-detail/']" [queryParams]="{id:latestList[0].id}">Read More</a></button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="news-section">
+    <div class="news-inner-section">
+        <div class="inner-left">
+            <div class="news">
+                <hr class="hr-1">
+                <h3>Latest</h3>
+                <hr class="hr-2">
+            </div>
+
+            <ng-container *ngIf="dataStatus == 'fetching'; else latestNewsTemplate">
+                <div class="img-spinner">
+                    <img src="/assets/images/spinner.svg" alt="">
+                </div>
+            </ng-container>
+            <ng-template #latestNewsTemplate>
+                <ng-container *ngFor="let latnews of latestList">
+                    <div class="news-container">
+                        <div class="news-content">
+                            <div class="news-img">
+                                <img [defaultImage]="spinnerSVG" [lazyLoad]="api.newsThumbnailUrl(latnews.id)">
+                            </div>
+                            <div class="content">
+                                <div class="news-date">
+                                    <p><i class="fa fa-calendar"></i> {{days(latnews.date)}} days ago</p>
+                                    <!-- <p><i class="fa fa-calendar"></i> {{latnews.date}} days ago</p> -->
+                                </div>
+                                <div class="news-inner-content">
+                                    <h1>{{latnews.title}}</h1>
+                                    <p>{{latnews.summary}}</p>
+                                    <button (click)="newsDetail(latnews.id)">
+                                        <a>Read More</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+
+            <!-- <div class="news">
+                <hr class="hr-1">
+                <h3>Previous</h3>
+                <hr class="hr-2">
+            </div> -->
+
+
+            <!-- <ng-container *ngIf="dataStatus == 'fetching'; else previousNewsTemplate">
+                <div class="img-spinner">
+                    <img src="/assets/images/spinner.svg" alt="">
+                </div>
+            </ng-container> -->
+            <!-- <ng-template #previousNewsTemplate>
+                <ng-container *ngFor="let prenews of previousList">
+                    <div class="news-container">
+                        <div class="previous-news-content">
+                            <div class="news-img">
+                                <img [defaultImage]="spinnerSVG" [lazyLoad]="api.newsThumbnailUrl(prenews.id)">
+                            </div>
+                            <div class="previous-content">
+                                <div class="previous-news-date">
+                                    <p><i class="fa fa-calendar"></i> {{days(prenews.date)}} days ago</p>
+                                </div>
+                                <div class="previous-news-inner-content">
+                                    <h1>{{prenews.title}}</h1>
+                                    <p>{{prenews.summary}}</p>
+                                    <button (click)="newsDetail(prenews.id)">
+                                        <a>Read More</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template> -->
+            <!-- <div class="news-button">
+                <button class="btn-news">Load more news</button>
+            </div> -->
+        </div>
+        <div class="inner-right">
+            <div class="newletters">
+                <div class="newletter-img"><img src="/assets/images/undraw_notify.png" alt="" srcset=""></div>
+                <h2>Join our Newsletter</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+                <input type="text" name="" id="" placeholder="Enter Your Email here">
+            </div>
+            <div class="newletter-line">
+                <hr class="hr-1">
+                <h3>Social Media</h3>
+                <hr class="hr-2">
+            </div>
+            <div class="social-post">
+                <div class="post-content">
+                    <div class="post-top">
+                        <div class="post-name"><strong>Sam Jones </strong>twitted</div>
+                        <div class="post-icon"><img src="/assets/images/twitter.png" alt="" srcset=""></div>
+                    </div>
+                    <div class="post-bottom">
+                        <img src="/assets/images/post-img.png" alt="" srcset="">
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div class="post-top">
+                        <div class="post-name"><strong>Sam Jones </strong>posted</div>
+                        <div class="post-icon"><img src="/assets/images/facebook.png" alt="" srcset=""></div>
+                    </div>
+                    <div class="post-bottom">
+                        <!-- <img src="/assets/images/post-img.png" alt="" srcset=""> -->
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div class="post-top">
+                        <div class="post-name"><strong>Sam Jones </strong>twitted</div>
+                        <div class="post-icon"><img src="/assets/images/twitter.png" alt="" srcset=""></div>
+                    </div>
+                    <div class="post-bottom">
+                        <img class="post-bottom-img" src="/assets/images/post-img1.png" alt="" srcset="">
+                        <!-- <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo</p> -->
+                    </div>
+                </div>
+                <div class="post-icon-content">
+                    <div class="post-icon-text">
+                        <p>Connect with us on our social media accounts</p>
+                    </div>
+                    <div class="post-icon">
+                        <div><img class="social-icon" src="/assets/images/icon-youtube.png" alt="" srcset=""></div>
+                        <div><img class="social-icon" src="/assets/images/icon-twitter.png" alt="" srcset=""></div>
+                        <div><img class="social-icon" src="/assets/images/icon-tiktok.png" alt="" srcset=""></div>
+                        <div><img class="social-icon" src="/assets/images/icon-instagram.png" alt="" srcset=""></div>
+                        <div><img class="social-icon" src="/assets/images/icon-facebook.png" alt="" srcset=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

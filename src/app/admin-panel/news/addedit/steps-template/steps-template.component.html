@@ -1,0 +1,22 @@
+<div class="pbar">
+    <div>
+        <ul id="progressbar" *ngIf="selectedId== -1">
+            <li [ngClass]="{'active': step == 'details'}" id="details"><i class="fas fa-info"></i>
+                <p>Details</p>
+            </li>
+            <li [ngClass]="{'active': step == 'images'}" id="Images"><i class="far fa-images"></i>
+                <p>News Content</p>
+            </li>
+        </ul>
+        <ul id="progressbar" *ngIf="selectedId > -1">
+            <li (click)="ds.step=1" [ngClass]="{'active': step == 'details'}" id="details">
+                <i class="fas fa-info"></i>
+                <p>Details</p>
+            </li>
+            <li (click)="ds.step=2" [ngClass]="{'active': step == 'images'}" id="Images">
+                <i class="far fa-images"></i>
+                <p>News Content</p>
+            </li>
+        </ul>
+    </div>
+</div>

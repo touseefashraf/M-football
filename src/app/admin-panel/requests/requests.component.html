@@ -1,0 +1,225 @@
+<div class="main-container">
+    <div class="title-wrapper">
+        <h4>Requests List</h4>
+        <!-- <button type="button" class="red pull-right" (click)="add()">Add tournaments</button> -->
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <label class="mb-1">Search by Type:</label>
+            <!-- <input type="text" placeholder="Enter Type" class="search-input"> -->
+            <select [(ngModel)]="type">
+                <option disabled [value]="null">Select type</option>
+                <option value="tour">Tour</option>
+                <!-- <option value="trip">Trip</option> -->
+                <option value="tournament">Tournament</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-3 d-flex">
+            <div class="px-2">
+                <label class="mb-0">&nbsp;</label>
+                <div class="clear"></div>
+                <button type="submit" (click)="search()" class="sm green"> <i class="fa fa-search"></i> Search </button>
+            </div>
+            <div class="px-2">
+                <label class="mb-0">&nbsp;</label>
+                <div class="clear"></div>
+                <button type="reset" (click)="reset()" class="sm green"> Clear Search </button>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact no</th>
+                    <th>Club</th>
+                    <th>Description</th>
+                    <th class="col-actions" style="width: 170px">Actions</th>
+                </tr>
+            </thead>
+            <ng-container *ngIf="fetching">
+                <tbody [appSkeletonTabelLoader]="loaderOptions"></tbody>
+            </ng-container>
+            <ng-container *ngIf="!fetching">
+                <tbody *ngIf="list.length > 0">
+                    <tr *ngFor="let d of list; let i = index" id="row-{{i}}">
+
+                        <td>
+                            <p>{{d.name}}</p>
+                        </td>
+                        <td>
+                            <p>{{d.email}}</p>
+                        </td>
+                        <td>
+                            <p>{{d.contact_no}}</p>
+                        </td>
+                        <td>
+                            <p>{{d.club}}</p>
+                        </td>
+                        <td>
+                            <app-read-more [text]="d.description" [maxLength]="100"></app-read-more>
+                        </td>
+
+                        <td class="text-center">
+                            <button type="button" class="sm green" style="padding-top: 4px; width: 135px;" (click)="updateStatus(d.id,'read')" (click)="requestdetailModal(requestdetailTemplate); getRequestdetail(d.id)">Request Detail</button>
+                            <span *ngIf="d.status == 'read'"><button type="button" (click)="updateStatus(d.id, 'unread')" class="sm red">Unread</button></span>
+                            <span *ngIf="d.status == 'unread'"><button type="button" (click)="updateStatus(d.id,'read')" class="sm green">Read</button></span>
+                            <!-- <button type="button" class="sm green" (click)="edit(d.id)">Edit</button> -->
+                            <!-- <button type="button" class="sm red" (click)="deletingIndex=i; deletePop=pop; selectedId=d.id" #pop="bs-popover" [popover]="deleteTemplate" placement="left" [outsideClick]="true">Delete</button> -->
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-container>
+            <ng-container *ngIf="!fetching">
+                <tbody *ngIf="list.length == 0">
+                    <tr>
+                        <td colspan="100">
+                            <app-no-data-found></app-no-data-found>
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-container>
+        </table>
+    </div>
+
+    <nav aria-label="Page navigation example" *ngIf="!fetching">
+        <ul class="pagination justify-content-center  mt-3">
+            <li class="page-item" *ngIf="pagination.prev_page_url != null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1" (click)="setPagination(page-1)">Previous</a>
+            </li>
+            <li class="page-item disabled" *ngIf="pagination.prev_page_url == null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1">Previous</a>
+            </li>
+
+            <ng-container *ngFor="let p of [].constructor(pagination.last_page); let i=index">
+                <li [class]="page==(i+1) ? 'page-item active' : 'page-item'">
+                    <a class="page-link" href="javascript: void(0)" (click)="setPagination(i+1)">{{i+1}}</a>
+                </li>
+            </ng-container>
+
+            <li class="page-item" *ngIf="pagination.next_page_url != null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1" (click)="setPagination(+page+1)">Next</a>
+            </li>
+            <li class="page-item disabled" *ngIf="pagination.next_page_url == null">
+                <a class="page-link" href="javascript: void(0)" tabindex="-1">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<ng-template #requestdetailTemplate>
+    <ng-container *ngIf="detailStatus == 'fetching'">
+        <div class=" text-center">
+            <img src="/assets/images/spinner.svg" style="width: 100px; margin-top:8%;margin-bottom:8%;">
+        </div>
+    </ng-container>
+    <ng-container *ngIf="detailStatus == 'done'">
+        <div class="container-fluid">
+            <div class="detailForm row">
+                <div class="heading col-md-12">Request Details</div>
+                <div class="lab col-md-2">
+                    Name:
+                </div>
+                <div class="col-md-4">
+                    {{requestDetailList.name}}
+                </div>
+                <div class="lab col-md-2">
+                    Email:
+                </div>
+                <div class="col-md-4">
+                    {{requestDetailList.email}}
+                </div>
+                <div class="lab col-md-2">
+                    Contact:
+                </div>
+                <div class="col-md-4">
+                    {{requestDetailList.contact_no}}
+                </div>
+                <div class="lab col-md-2">
+                    Club:
+                </div>
+                <div class="col-md-4">
+                    {{requestDetailList.club}}
+                </div>
+                <div class="lab col-md-2">
+                    Function:
+                </div>
+                <div class="col-md-4">
+                    {{requestDetailList.function}}
+                </div>
+                <div class="lab col-md-2">
+                    group:
+                </div>
+                <div class="col-md-4">
+                    {{requestDetailList.group}}
+                </div>
+                <div class="lab col-md-2">
+                    Team:
+                </div>
+                <div class="col-md-4">
+                    {{requestDetailList.team}}
+                </div>
+                <div class="lab col-md-2">
+                    From:
+                </div>
+                <div class="col-md-4">
+                    {{requestDetailList.from_date | date: 'd-MMM-y '}}
+                </div>
+                <div class="lab col-md-2">
+                    To:
+                </div>
+                <div class="col-md-4">
+                    {{requestDetailList.to_date | date: 'd-MMM-y '}}
+                </div>
+
+                <div class="lab col-md-12">
+                    Interests:
+                </div>
+                <div *ngIf="requestDetailList.strm" class="col-md-3">
+                    Stadium Tour Real Madrid
+                </div>
+                <div *ngIf="requestDetailList.stam" class="col-md-3">
+                    Stadium Tour Atletico Madrid
+                </div>
+                <div *ngIf="requestDetailList.sm" class="col-md-3">
+                    Sightseeing Madrid
+                </div>
+                <div *ngIf="requestDetailList.ccs" class="col-md-3">
+                    City Centre (shopping)
+                </div>
+                <div  *ngIf="requestDetailList.vpm"class="col-md-3">
+                    Visit Professional Match
+                </div>
+                <div class="lab col-md-12">
+                    Description:
+                </div>
+                <div class="col-md-12">
+                    {{requestDetailList.description}}
+                </div>
+
+
+
+            </div>
+        </div>
+    </ng-container>
+    <div class="modal-body text-center">
+        <button type="button" class="black pull-right modal-btn" (click)="modalRef.hide()">Cancel</button>
+    </div>
+</ng-template>
+
+<ng-template #deleteTemplate>
+    <p>Are you sure that you want to delete?</p>
+    <button class="xs black" (click)="deletePop.hide()">No</button>
+    <button class="xs red" (click)="delete()">Yes</button>
+</ng-template>
+
+
+<ng-template #changeStatus>
+    <div class="modal-body text-center">
+        <p>Are you sure that you want change the status to {{selectedStatus | titlecase}}?</p>
+        <button class="xs red" (click)="modalRef.hide()">No</button>
+        <button class="xs green" (click)="changeNewsStatus()">Yes</button>
+    </div>
+</ng-template>

@@ -1,0 +1,152 @@
+.footer {
+   background-color: #133960;
+   padding: 20px 0px;
+}
+.image-wrapper {
+    width: 260px;
+   margin-right: 10px;
+}
+.image{
+   width: 100%;
+}
+.contactUs-icon{
+   margin-right: 40px;
+   font-size: 20px;
+}
+.column-class{
+   display: flex;
+   flex-direction: column;
+   color: white !important;
+   padding: 10px 30px;
+}
+.third-column{
+   width: 35%;
+}
+
+
+.footer-container{
+   display: flex;
+   justify-content: space-between;
+   width: 90%;
+   margin-left: 6%;
+   padding: 40px 1%;
+
+}
+
+.logo-container{
+   display: flex;
+   margin-bottom: 40px;
+}
+.logo-text h3{
+   font-size: 23px;
+}
+
+.logo-text h4{
+   font-size: 14px;
+}
+.item{
+   margin-bottom: 8px;
+   padding: 2px 5px;
+}
+.list-item{
+   margin-bottom: 12px;
+   color: white !important;
+   padding: 2px 5px;
+}
+
+.list-item a{
+   text-decoration: none !important;
+   color: white !important;
+   font-weight: 600;
+
+}
+
+.list-item p{
+   margin-bottom: 2px;
+}
+.second-list-item{
+   margin-bottom: 12px;
+   color: white !important;
+   padding: 2px 5px;
+   font-weight: 600;
+
+}
+
+.second-list-item a{
+   text-decoration: none !important;
+   color: white !important;
+}
+
+.second-list-item p{
+   margin-bottom: 2px;
+}
+input[type=text]{
+   width: 100%;
+   height: 45px;
+   padding: 5px 8px;
+   border: solid white 2px !important;
+   border-radius: 5px;
+   color: #5c738f;
+   background-color: #133960;
+   margin-bottom: 25px;
+}
+
+input[type=text] :focus{
+   border: white 2px;
+   border-radius: 5px;
+}
+
+.social-icon{
+   margin-top: 5px;
+   margin-right: 25px;
+   font-size: 24px;
+}
+
+@media(max-width: 768px) {
+   .footer-container{
+      flex-wrap: wrap;
+   }
+   .column-class{
+      margin-bottom: 30px;
+   }
+   .first-column{
+      margin-left: 25%;
+      width: 100%;
+   }
+   .second-column {
+      width: 50%;
+   }
+   .third-column {
+      width: 50%;
+   }
+   .list-item{
+      margin-bottom: 25px;
+   }
+
+}
+
+@media(max-width: 425px) {
+   .footer-container{
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      justify-content: center;
+   }
+   .column-class{
+      width: 98%;
+      margin-bottom: 10px;
+   }
+   .first-column{
+      width: 100%;
+      margin-left: 0px;
+   }
+   .third-column {
+      margin-left: 0px;
+   }
+   .second-column {
+      text-align: center;
+   }
+   .list-item{
+      margin-bottom: 10px;
+      margin-left: 0px;
+   }
+}

@@ -1,0 +1,89 @@
+.themeCol2 {
+    color: orange;
+}
+
+.danger {
+    color: red;
+}
+
+.tut-pro-photo {
+    width: 59%;
+    text-align: center;
+}
+.tut-pro-photo img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.td-image-container {
+    width: 52px;
+}
+
+.list-imgs {
+    height: 50px;
+    width: 50px;
+}
+.stats-container div{
+    width: 23%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    padding: 1%;
+    position: relative;
+}
+.clickable{
+    cursor: pointer;
+}
+.stats-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.count-container p {
+    font-size: 18px;
+    /* font-weight: bold; */
+    color: black;
+}
+.count-container h1 {
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    line-height: 30px;
+}
+
+.count-container img {
+    width: 100%;
+    height: 80px;
+}
+
+.inactive{
+    background-color: #F5F6F7;
+}
+
+.active {
+    background: #ffc107
+}
+.btn {
+    background-color: #3a7d44;
+    border-radius: 7px;
+}
+.btn-box {
+    /* margin-top: -25px; */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-body{
+    overflow-y: scroll !important;
+    max-height: 350px !important;
+}
+@media only screen and (max-width: 768px){
+    .stats-container div {
+        width:49%;
+    }
+}

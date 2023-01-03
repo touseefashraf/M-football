@@ -1,0 +1,112 @@
+<div class="main-container">
+    <app-steps-template [step]="'teams'"></app-steps-template>
+    <div class="row m-3 no-gutters">
+
+
+
+        <div class="col-md-12 mb-1">
+            <div class="d-flex justify-content-between">
+                <h4>Teams</h4>
+                <button class="green sm mb-2" *ngIf="teamList.length > 0" (click)="openModalSubject(subject, -1)">Add Team</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Short Name</th>
+                            <th width="300">Description</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <ng-container *ngIf="dataStatus == 'fetching'">
+                        <tbody [appSkeletonTabelLoader]="loaderOptions"></tbody>
+                    </ng-container>
+                    <ng-container *ngIf="dataStatus == 'done'">
+                        <tbody>
+                            <tr *ngFor="let d of dataService.newsDetails.tournament_teams; let i = index">
+                                <td class="td-image-container">
+
+                                    <img [defaultImage]="spinnerSVG" [lazyLoad]="api.teamImageUrl(d.team.id)" width="80" height="60">
+                                </td>
+                                <td>{{d.team.full_name}} </td>
+                                <td>{{d.team.short_name}} </td>
+                                <td>
+                                    <app-read-more [text]="d.team.description" [maxLength]="130"></app-read-more>
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="sm red" (click)="deletingIndex=i; deletePop=pop; selectedId=d.id" #pop="bs-popover" [popover]="deleteTemplate" placement="left" [outsideClick]="true">Delete</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                        <ng-template #noDataFound>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <app-no-data-found></app-no-data-found>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </ng-template>
+                    </ng-container>
+                </table>
+            </div>
+
+            <div class="btn-box">
+                <button class="btn" type="button" (click)="dataService.step = 2">Previous</button>
+                <button class="btn" type="button" [routerLink]="['../../list']" [queryParams]="{page:1,tournament_type:'tournament'}">&nbsp;Finish &nbsp;</button>
+            </div>
+        </div>
+
+
+        <ng-template #subject>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="width: 100%; display: flex; justify-content: center;">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="modal-title pull-left">Add Team</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <p style="margin-bottom:-5px;">Please select teams for tournament from following.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button *ngIf="teamListCount > 0" type="submit" class="green sm m-1" (click)="save()">save</button>
+                            <button type="button" class="red sm ml-1" (click)="cancelTeamButton(f)">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12" *ngIf="dataStatus=='done'">
+                            <div class="stats-container" *ngIf="teamListCount > 0">
+                                <ng-container *ngFor="let d of teamList;">
+                                    <div (click)="setTeam(d.id,$event)" *ngIf="teamIds.indexOf(d.id) == -1" [class]="setClass(d.id)">
+                                        <h1>{{d.full_name}}</h1>
+                                        <img [defaultImage]="spinnerSVG" [lazyLoad]="api.teamImageUrl(d.id)">
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div class="stats-container" *ngIf="teamListCount == 0">
+                                <h1>No Record Found</h1>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #deleteTemplate>
+            <p>Are you sure that you want to delete?</p>
+            <button class="xs black" (click)="deletePop.hide()">No</button>
+            <button class="xs red" (click)="deleteTeam()">Yes</button>
+        </ng-template>
+    </div>
+</div>

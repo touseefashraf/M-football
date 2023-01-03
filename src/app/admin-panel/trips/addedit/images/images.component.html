@@ -1,0 +1,157 @@
+<div class="main-container">
+    <app-steps-template [step]="'images'"></app-steps-template>
+    <div class="row">
+        <div class="col-md-12 drag-drop-container">
+            <input type="file" style="display: none;" id="other-files" (change)="onDocumentChange($event)" multiple>
+            <div class="images-containers-wrapper">
+                <div class="images-container">
+                    <div class="container">
+                        <div class="main">
+                            <div class="main-text">
+                                <p>Main Image</p>
+                                <p>This image will be shown in the tournament search and also as a banner.</p>
+                            </div>
+                            <ng-container *ngIf="s2==true">
+                                <input type="file" style="display: none;" id="thumbnail-image" (change)="onThumbnailChange($event, cropperModal)">
+                                <div class="img-box" *ngIf="image=='no'">
+                                    <i style="font-size: 30px;" (click)="browseThumbnail($event)" class="far fa-image"></i>
+                                    <p (click)="browseThumbnail($event)">Click to add image</p>
+                                </div>
+                                <div class="img-loaded" *ngIf="image=='yes'">
+                                    <img [src]="thumbnail" id="banner-img">
+                                    <div class="img-info">
+                                        <div class="img-name">
+                                        </div>
+                                        <div class="btns">
+                                            <button type="button" (click)="browseThumbnail($event)"><i class="fas fa-upload"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="s3==true">
+                                <div class="img-load">
+                                    <img src="/assets/images/rolling2.svg" alt="">
+                                    <p>uploading image</p>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="s4==true">
+                                <div class="img-loaded">
+                                    <img src="/assets/images/header2.jpg" alt="">
+                                    <div class="img-info">
+                                        <div class="img-name">
+                                            <p>header.jpg</p>
+                                            <p>1.1mb</p>
+                                        </div>
+                                        <div class="btns">
+                                            <button type="button"><i class="fas fa-download"></i></button>
+                                            <button type="button"><i class="far fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="main">
+                            <div class="main-text">
+                                <p>Gallery Images</p>
+                                <p>These images will be displayed on detail tournament page and in gallery section.</p>
+                            </div>
+                            <ng-container *ngIf="uploadedFiles.length==0">
+                                <div class="img-box2" (dragover)="fileDragStart($event)" (dragenter)="fileDragStart($event)" (dragleave)="fileDragEnd($event)" (drop)="fileDropped($event)">
+                                    <i style="font-size: 60px;" class="far fa-images"></i>
+                                    <p>Drag and Drop Images here</p>
+                                    <p>or</p>
+                                    <button class="btn ci" type="button" (click)="browseFiles($event)">Choose Images</button>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="uploadedFiles.length > 0">
+                                <div class="img-load2" (dragover)="fileDragStartNext($event)" (dragenter)="fileDragStartNext($event)" (dragleave)="fileDragEndNext($event)" (drop)="fileDroppedNext($event)">
+                                    <div class="loaded-img" *ngFor="let file of uploadedFiles; let i = index">
+                                        <ng-container *ngIf="file.uploading">
+                                            <div class="loading-img">
+                                                <img src="/assets/images/rolling2.svg" alt="">
+                                                <p>Uploading Image</p>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="file.deletion">
+                                            <div class="loading-img">
+                                                <img src="/assets/images/rolling2.svg" alt="">
+                                                <p>Deleting Image</p>
+                                            </div>
+                                        </ng-container>
+                                        <div class="side-img">
+                                            <img [lazyLoad]="api.tournamentImageUrl(file.id)" alt="">
+                                        </div>
+                                        <ng-container *ngIf="!file.uploading && !file.deletion">
+                                            <div class="side-area">
+                                                <div class="img-name">
+                                                    <p>{{file.name}}</p>
+                                                    <p>{{(file.size/1024) | number}}mb</p>
+                                                </div>
+                                                <div class="btns">
+                                                    <button type="button"><i class="fas fa-download"></i></button>
+                                                    <button type="button" (click)="deleteImage(i)"><i class="far fa-trash-alt"></i></button>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <div style="width: 100%; margin-top: 70px;"></div>
+                                    <div class="drag-bar">
+                                        <p><i style="margin:0px 10px;" class="fas fa-cloud-upload-alt"></i>Drag image here to upload</p>
+                                        <button class="btn-wh" type="button" (click)="browseFiles($event)">Choose Images</button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="btn-box">
+                            <button class="btn" type="button" (click)="dataService.step = 1">Previous</button>
+                            <button class="btn" type="button" [routerLink]="['../../list']" [queryParams]="{page:1,tournament_type:'tour'}">&nbsp;Finish &nbsp;</button>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #confirmingTemplate>
+    <div class="modal-body text-center">
+        <p>Do you want to Delete all Files?</p>
+        <button type="button" class="green sm" (click)="mRef.hide()">No</button>
+        <button type="button" class="red sm" (click)="deleteAllFiles()">Yes</button>
+    </div>
+</ng-template>
+
+<ng-template #selectedConfirmingTemplate>
+    <div class="modal-body text-center">
+        <p>Do you want to Delete Selected Files?</p>
+        <button type="button" class="green sm" (click)="mRef.hide()">No</button>
+        <button type="button" class="red sm" (click)="deleteSelectedFiles()">Yes</button>
+    </div>
+</ng-template>
+
+<ng-template #cropperModal>
+    <div class="modal-body">
+        <ng-scrollbar class="modal-scrollbar">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrapper">
+                        <h2 class="title" style="font-size: 20px;">Adjust Image Size</h2>
+                        <div>
+                            <button type="button" class="sm red" (click)="doneCroppingThumbnail()">Done</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="351/238" [onlyScaleDown]="true" [roundCropper]="false" format="png" outputType="base64" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [alignImage]="'center'">
+                    </image-cropper>
+                </div>
+            </div>
+        </ng-scrollbar>
+    </div>
+</ng-template>

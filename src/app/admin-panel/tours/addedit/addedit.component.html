@@ -1,0 +1,195 @@
+<div class="main-container" *ngIf="dataService.step == 1">
+    <app-steps-template [step]="'details'"></app-steps-template>
+    <form [formGroup]="newsForm" (ngSubmit)="save(newsForm, f)" #f="ngForm">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-1">
+                        <label class="mb-1">Title <span class="mendatory">*</span></label>
+                        <input type="text" formControlName="name" class="form-control mt-0" placeholder="Enter Title" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.name , f)" class="errors">
+                            <p *ngIf="g.name.errors.required">Title is required</p>
+                            <p *ngIf="g.name.errors.maxlength">Title should not exceeds {{ g.name.errors.maxlength.requiredLength }} Char</p>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-md-4 mb-1">
+                        <label class="mb-1">Start Date <span class="mendatory">*</span></label>
+                        <input type="text" class="fadeIn" bsDatepicker [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY' }" formControlName="start_date" placeholder="Enter Date" [ngClass]="{'form-submitted': f.submitted}" />
+                        <div *ngIf="ui.checkErrors(g.start_date , f)" class="errors">
+                            <p *ngIf="g.start_date.errors.required">Start Date is required</p>
+                            <p *ngIf="g.start_date.errors.maxlength">Date should not exceeds {{ g.start_date.errors.maxlength.requiredLength }} Char</p>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-md-4 mb-1">
+                        <label class="mb-1">End Date <span class="mendatory">*</span></label>
+                        <input type="text" class="fadeIn" bsDatepicker [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY' }" formControlName="end_date" placeholder="Enter Date" [ngClass]="{'form-submitted': f.submitted}" />
+                        <div *ngIf="ui.checkErrors(g.end_date , f)" class="errors">
+                            <p *ngIf="g.end_date.errors.required">End Date is required</p>
+                            <p *ngIf="g.end_date.errors.maxlength">Date should not exceeds {{ g.end_date.errors.maxlength.requiredLength }} Char</p>
+                        </div>
+                    </div> -->
+                    <div class="col-md-4 mb-1">
+                        <label class="mb-1">Type <span class="mendatory">*</span></label>
+                        <select disabled=true formControlName="tournament_type">
+                            <option value="tour">Tour</option>
+                        </select>
+                        <div *ngIf="ui.checkErrors(g.tournament_type , f)" class="errors">
+                            <p *ngIf="g.tournament_type.errors.required">Type is required</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <label class="mb-1">Level <span class="mendatory">*</span></label>
+                        <input type="text" formControlName="level" class="form-control mt-0" placeholder="Enter Level" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.level , f)" class="errors">
+                            <p *ngIf="g.level.errors.required">Level is required</p>
+                            <p *ngIf="g.level.errors.maxlength">Level should not exceeds {{ g.level.errors.maxlength.requiredLength }} Char</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <label class="mb-1">Age Category <span class="mendatory">*</span></label>
+                        <!-- <input type="text" formControlName="age_category" class="form-control mt-0" placeholder="Enter Age Category" [ngClass]="{'form-submitted': f.submitted}"> -->
+                        <select id="category" formControlName="age_category" class="form-control mt-0" placeholder="Enter Age Category" [ngClass]="{'form-submitted': f.submitted}">
+                            <option [disabled]="true" value="">Select</option>
+                            <option [value]="all">All</option>
+                            <ng-container *ngFor="let a of age">
+                                <option [value]="a">U{{ a }}</option>
+
+                            </ng-container>
+                        </select>
+                        <div *ngIf="ui.checkErrors(g.age_category , f)" class="errors">
+                            <p *ngIf="g.age_category.errors.required">Age category is required</p>
+                            <p *ngIf="g.age_category.errors.maxlength">Age category should not exceeds {{ g.age_category.errors.maxlength.requiredLength }} Char</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-4 mb-1">
+                        <label class="mb-1">Born After <span class="mendatory">*</span></label>
+                        <input type="text" class="fadeIn" bsDatepicker [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY' }" formControlName="born_after" placeholder="Select Date" [ngClass]="{'form-submitted': f.submitted}" />
+                        <div *ngIf="ui.checkErrors(g.born_after , f)" class="errors">
+                            <p *ngIf="g.born_after.errors.required">Start Date is required</p>
+                            <p *ngIf="g.born_after.errors.maxlength">Date should not exceeds {{ g.start_date.errors.maxlength.requiredLength }} Char</p>
+                        </div>
+                    </div> -->
+                    <div class="col-md-4 mb-1">
+                        <label class="mb-1">Gender <span class="mendatory">*</span></label>
+                        <!-- <input type="text" formControlName="gender" class="form-control mt-0" placeholder="Enter Gender" [ngClass]="{'form-submitted': f.submitted}"> -->
+                        <select formControlName="gender">
+                            <option value="all">All</option>
+                            <option value="boys">Boys</option>
+                            <option value="girls">Girls</option>
+                        </select>
+                        <div *ngIf="ui.checkErrors(g.gender , f)" class="errors">
+                            <p *ngIf="g.gender.errors.required">Gender is required</p>
+                            <p *ngIf="g.gender.errors.maxlength">Gender should not exceeds {{ g.gender.errors.maxlength.requiredLength }} Char</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <label class="mb-1">Location <span class="mendatory">*</span></label>
+                        <input type="text" formControlName="location" class="form-control mt-0" placeholder="Enter Location" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.location , f)" class="errors">
+                            <p *ngIf="g.location.errors.required">Location is required</p>
+                            <p *ngIf="g.location.errors.maxlength">location should not exceeds {{ g.location.errors.maxlength.requiredLength }} Char</p>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="newsForm.value.tournament_type === 'tour'">
+                        <div class="col-md-12 mb-1">
+                            <label class="mb-1">About Madrid <span class="mendatory">*</span></label>
+                            <textarea class="fadeIn" formControlName="about_madrid" rows="4" placeholder="Enter About Madrid"></textarea>
+                            <div *ngIf="ui.checkErrors(g.about_madrid , f)" class="errors">
+                                <!-- <p *ngIf="g.about_madrid.errors.required">About Madrid is required</p> -->
+                                <p *ngIf="g.about_madrid.errors.maxlength">About Madrid should not exceeds {{ g.about_madrid.errors.maxlength.requiredLength }} Char</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label class="mb-0">Day One ltinerary <span class="mendatory">*</span></label>
+                            <textarea class="fadeIn" formControlName="day_one_itinerary" rows="4" placeholder="Day One Itinerary"></textarea>
+                            <div *ngIf="ui.checkErrors(g.day_one_itinerary , f)" class="errors">
+                                <!-- <p *ngIf="g.day_one_itinerary.errors.required">Day One Itinerary is required</p> -->
+                                <p *ngIf="g.day_one_itinerary.errors.maxlength">Day One Itinerary should not exceeds {{ g.day_one_itinerary.errors.maxlength.requiredLength }} Char</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label class="mb-0">Day Two ltinerary <span class="mendatory">*</span></label>
+                            <textarea class="fadeIn" formControlName="day_two_itinerary" rows="4" placeholder="Day Two ltinerary"></textarea>
+                            <div *ngIf="ui.checkErrors(g.day_two_itinerary , f)" class="errors">
+                                <!-- <p *ngIf="g.day_two_itinerary.errors.required">Day Two ltinerary is required</p> -->
+                                <p *ngIf="g.day_two_itinerary.errors.maxlength">Day Two ltinerary should not exceeds {{ g.day_two_itinerary.errors.maxlength.requiredLength }} Char</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label class="mb-0">Day Three ltinerary <span class="mendatory">*</span></label>
+                            <textarea class="fadeIn" formControlName="day_three_itinerary" rows="4" placeholder="Day Three ltinerary"></textarea>
+                            <div *ngIf="ui.checkErrors(g.day_three_itinerary , f)" class="errors">
+                                <!-- <p *ngIf="g.day_three_itinerary.errors.required">Day Three ltinerary is required</p> -->
+                                <p *ngIf="g.day_three_itinerary.errors.maxlength">Day Three ltinerary should not exceeds {{ g.day_three_itinerary.errors.maxlength.requiredLength }} Char</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label class="mb-0">Day Four ltinerary <span class="mendatory">*</span></label>
+                            <textarea class="fadeIn" formControlName="day_four_itinerary" rows="4" placeholder="Day Four ltinerary"></textarea>
+                            <div *ngIf="ui.checkErrors(g.day_four_itinerary , f)" class="errors">
+                                <!-- <p *ngIf="g.day_four_itinerary.errors.required">Day Four ltinerary is required</p> -->
+                                <p *ngIf="g.day_four_itinerary.errors.maxlength">Day Four ltinerary should not exceeds {{ g.day_four_itinerary.errors.maxlength.requiredLength }} Char</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label class="mb-0">Day Five ltinerary <span class="mendatory">*</span></label>
+                            <textarea class="fadeIn" formControlName="day_five_itinerary" rows="4" placeholder="Day Five ltinerary"></textarea>
+                            <div *ngIf="ui.checkErrors(g.day_five_itinerary , f)" class="errors">
+                                <!-- <p *ngIf="g.day_five_itinerary.errors.required">Day Five ltinerary is required</p> -->
+                                <p *ngIf="g.day_five_itinerary.errors.maxlength">Day Five ltinerary should not exceeds {{ g.day_five_itinerary.errors.maxlength.requiredLength }} Char</p>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div class="col-md-12 mb-1">
+                        <label class="mb-0">Description <span class="mendatory">*</span></label>
+                        <textarea class="fadeIn" formControlName="description" rows="4" placeholder="Description"></textarea>
+                        <div *ngIf="ui.checkErrors(g.description , f)" class="errors">
+                            <p *ngIf="g.description.errors.required">Description is required</p>
+                            <p *ngIf="g.description.errors.maxlength">Description should not exceeds {{ g.description.errors.maxlength.requiredLength }} Char</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-4">
+                <div class="tut-pro-photo">
+                    <img [src]="thumbnail" id="banner-img">
+                    <input type="file" style="display: none;" id="thumbnail-image" (change)="onThumbnailChange($event, cropperModal)">
+                    <div class="text-center">
+                        <button type="button" class="green sm" (click)="browseThumbnail($event)" style="min-width: 140px">Browse Picture</button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <button type="submit" class="green sm m-1">save</button>
+        <a [routerLink]="['/admin/tournaments/list']"><button type="button" class="red sm ml-1">Cancel</button></a>
+
+    </form>
+    <ng-template #cropperModal>
+        <div class="modal-body">
+            <ng-scrollbar class="modal-scrollbar">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-wrapper">
+                            <h2 class="title" style="font-size: 20px;">Adjust Image Size</h2>
+                            <div>
+                                <button type="button" class="sm red" (click)="doneCroppingThumbnail()">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="270/225" [onlyScaleDown]="true" [roundCropper]="false" format="png" outputType="base64" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [alignImage]="'center'">
+                        </image-cropper>
+                    </div>
+                </div>
+            </ng-scrollbar>
+        </div>
+    </ng-template>
+</div>
+<app-images *ngIf="dataService.step == 2"></app-images>
+<app-teams *ngIf="dataService.step == 3"></app-teams>

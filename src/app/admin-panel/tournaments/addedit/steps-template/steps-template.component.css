@@ -1,0 +1,210 @@
+/* p {
+    color: grey
+} */
+
+.card {
+    z-index: 0;
+    border: none;
+    position: relative
+}
+
+.fs-title {
+    font-size: 25px;
+    color: var(--ap-red);
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left
+}
+
+.purple-text {
+    color: var(--ap-red);
+    font-weight: normal
+}
+
+/* .steps {
+    font-size: 25px;
+    color: gray;
+    margin-bottom: 10px;
+    font-weight: normal;
+    text-align: right;
+} */
+
+.pbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    overflow: hidden;
+    background-color: rgb(189, 189, 189);
+
+    margin: -10px -20px 50px -20px;
+}
+
+/* #progressbar .active {
+    color:  #133960;
+} */
+
+
+ul#progressbar {
+    /* padding-inline-start: 0; */
+    margin-left: -120px;
+
+}
+
+
+/* #progressbar #details{
+
+}
+
+
+#progressbar #Images:before {
+    font-family: FontAwesome;
+    content: "\f15c"
+}
+
+#progressbar #Teams:before {
+    font-family: FontAwesome;
+    content: "\f15c"
+} */
+
+#progressbar li{
+    width: 200px;
+    height: 60px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: #133960;
+    /* border-top-left-radius: 10px;
+    border-top-right-radius: 10px; */
+    margin: 5px 0 25px;
+    padding: 2px;
+    cursor: pointer;
+    float: left;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+
+}
+#progressbar li:nth-child(1){
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#progressbar li:nth-child(3){
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+/* #progressbar li:nth-child(1):after, li:nth-child(2)::after{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-left: 30px solid #ce0b0b;
+    border-bottom: 30px solid transparent;
+    margin: -52px 0px 0 70px;
+} */
+/* #progressbar li:nth-child(2):before, li:nth-child(3):before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-left: 30px solid #ffffff;
+    border-bottom: 30px solid transparent;
+    margin: -3px 0px 0 -89px;
+} */
+.arrow{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-left: 30px solid #ffffff;
+    border-bottom: 30px solid transparent;
+    margin: -52px 0px 0 100px;
+    z-index: 9;
+}
+.arrow-end-one{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-left: 30px solid #bdbdbd;
+    border-bottom: 30px solid transparent;
+    margin: -2px 0px 0 -96px;
+    z-index: 9;
+}
+.arrow-end{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-left: 30px solid #133960;
+    border-bottom: 30px solid transparent;
+    margin: -2px 0px 0 -88px;
+    z-index: 9;
+}
+.arrow-last{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-left: 30px solid #bdbdbd;
+    border-bottom: 30px solid transparent;
+    margin: -52px 0px 0 100px;
+    z-index: 9;
+}
+#progressbar li p{
+    color:  #ffffff;
+    font-size: 15px;
+    margin: 0px;
+    line-height: 5px;
+}
+#progressbar li i{
+    color:  #ffffff;
+
+}
+
+/* #progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: rgb(172, 9, 9);
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+} */
+
+
+#progressbar li.active {
+    color: #133960;
+    background:  #ffffff;
+
+}
+#progressbar li.active p,#progressbar li.active i{
+    color: #133960;
+
+
+}
+
+.progress {
+    height: 20px
+}
+
+.progress-bar {
+    background-color: var(--ap-red)
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+
+@media only screen and (max-width: 575.98px){
+    #progressbar li{
+
+        width: 135px;
+        margin: 0px 3px;
+    }
+}

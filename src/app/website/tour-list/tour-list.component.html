@@ -1,0 +1,66 @@
+<ng-container *ngIf="dataStatus == 'fetching'">
+    <div class="img-spinner">
+        <img src="/assets/images/spinner.svg" alt="">
+    </div>
+</ng-container>
+<ng-container *ngIf="dataStatus == 'done'">
+    <section class="tournament-section">
+        <ng-container *ngIf="resetSearch">
+            <div class="tournament-card" (click)="reset()" style="cursor: pointer;;">
+            <div  class="back-color age" ><strong>Reset Search</strong></div>
+            </div>
+        </ng-container>
+        <div class="tournament-card">
+            <ng-container *ngIf="tourList">
+                <ng-container *ngFor="let c of tourList">
+                    <div class="cards">
+                        <div class="card-top">
+                            <p class="date">
+                                <!-- {{c.start_date | date: 'MMM y'}} - {{c.end_date | date: 'MMM y'}} -->
+                                {{c.name}}
+                            </p>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img style="cursor: pointer;" [defaultImage]="spinnerSVG" [lazyLoad]="api.tournamentThumbnailUrl(c.id)" (click)="tourDetail(c.id, c.tournament_type)">
+                            </div>
+                            <div class="card-text">
+                                <h1 (click)="tourDetail(c.id, c.tournament_type)">{{c.name}}</h1>
+                                <p>{{c.description}}</p>
+                                <div class="card-btn">
+                                    <div class="back-color tournament">{{c.tournament_type.charAt(0).toUpperCase() + c.tournament_type.slice(1)}}</div>
+                                    <div class="back-color level"><strong>Level: </strong>{{c.level}}</div>
+                                    <div class="back-color gender"><img src="/assets/images/gender-icon.png" class="gen-icon"> {{c.gender}}</div>
+                                    <div class="back-color age"><strong>Age: </strong> {{c.age_category}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="cards" *ngIf="tourList.length > 0" style="visibility: hidden;">
+                    <div class="card-top">
+                        <p class="date"></p>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-image">
+                            
+                        </div>
+                        <div class="card-text">
+                            <h1>d</h1>
+                            <p>dd</p>
+                            <div class="card-btn">
+                                <div class="back-color tournament">d</div>
+                                <div class="back-color level"><strong>Level: </strong></div>
+                                <div class="back-color gender"><img src="/assets/images/gender-icon.png" class="gen-icon"></div>
+                                <div class="back-color age"><strong>Age: </strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </ng-container>
+            <ng-container *ngIf="tourList.length === 0">
+                <h1 class="dataUnavailable">No Data Available</h1>
+            </ng-container>
+        </div>
+    </section>
+</ng-container>

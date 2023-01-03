@@ -1,0 +1,17 @@
+.detailForm{
+
+ margin: 20px;
+}
+.heading{
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+.lab{
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(4, 4, 65);
+}

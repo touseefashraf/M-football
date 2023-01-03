@@ -1,0 +1,17 @@
+<div class="pbar">
+    <!-- <div class=" col-sm-10 col-md-10 col-lg-12 col-xl-12 text-center p-0 mt-3 mb-2"> -->
+        <div>
+        <div class="">
+            <ul id="progressbar" *ngIf="selectedId== -1">
+                <li [ngClass]="{'active': step == 'details'}" id="details"><i class="fas fa-info"></i> <p>Tour Details</p><span [ngClass]="{'arrow': step == 'details'}"></span></li>
+                <li [ngClass]="{'active': step == 'images'}" id="Images"><span [ngClass]="{'arrow-end': step == 'images'}"></span><i class="far fa-images"></i><p>Images</p><span [ngClass]="{'arrow': step == 'images'}"></span></li>
+                <!-- <li [ngClass]="{'active': step == 'teams'}" id="Teams"><span [ngClass]="{'arrow-end': step == 'teams'}"></span><i class="fas fa-users"></i><p>Teams</p></li> -->
+            </ul>
+            <ul id="progressbar" *ngIf="selectedId > -1">
+                <li (click)="ds.step=1" [ngClass]="{'active': step == 'details'}" id="details"><i class="fas fa-info"></i> <p>Tour Details</p><span [ngClass]="{'arrow': step == 'details'}"></span></li>
+                <li (click)="ds.step=2" [ngClass]="{'active': step == 'images'}" id="Images"><span [ngClass]="{'arrow-end': step == 'images'}"></span><i class="far fa-images"></i><p>Images</p><span [ngClass]="{'arrow-last': step == 'images'}"></span></li>
+                <!-- <li (click)="ds.step=3" [ngClass]="{'active': step == 'teams'}" id="Teams"><span [ngClass]="{'arrow-end': step == 'teams'}"></span><i class="fas fa-users"></i><p>Teams</p><span [ngClass]="{'arrow-last': step == 'teams'}"></span></li> -->
+            </ul>
+        </div>
+    </div>
+</div>

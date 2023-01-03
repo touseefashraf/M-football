@@ -1,0 +1,104 @@
+<section class="home-section">
+    <div class="home-inner-section">
+        <div class="inner-content">
+            <div class="image">
+                <img src="/assets/images/faq-banner-img.png" alt="" class="img">
+            </div>
+            <div class="overlay">
+                <div class="overlay-top">
+                    <h1>FAQs</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section">
+    <div class="faq-inner-section">
+        <div class="inner-left">
+            <ng-container *ngIf="dataStatus == 'fetching'">
+                <div class="img-spinner">
+                    <img src="/assets/images/spinner.svg" alt="">
+                </div>
+            </ng-container>
+            <ng-container *ngIf="dataStatus == 'done'">
+                <div class="faq-questions-section">
+                    <ng-container *ngIf="faqList">
+                        <ng-container *ngFor="let faq of faqList">
+                            <div class="faq">
+                                <div class="faq-question">
+                                    <h1>Q</h1>
+                                    <p>{{faq.question}}</p>
+                                </div>
+                                <div class="faq-answer">
+                                    <h1>A</h1>
+                                    <p>{{faq.answer}}</p>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="faqList.length === 0">
+                        <h1 class="dataUnavailable">No FAQ's Available</h1>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+        <div class="inner-right">
+            <div class="newletters">
+                <div class="newletter-img"><img src="/assets/images/undraw_notify.png" alt="" srcset=""></div>
+                <h2>Join our Newsletter</h2>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam</p>
+                <input type="text" name="" id="" placeholder="Enter Your Email here">
+            </div>
+            <div class="newletter-line">
+                <hr class="hr-1">
+                <h3>Social Media</h3>
+                <hr class="hr-2">
+            </div>
+            <div class="social-post">
+                <div class="post-content">
+                    <div class="post-top">
+                        <div class="post-name"><strong>Sam Jones </strong>twitted</div>
+                        <div class="post-icon"><img src="/assets/images/twitter.png" alt="" srcset=""></div>
+                    </div>
+                    <div class="post-bottom">
+                        <img src="/assets/images/post-img.png" alt="" srcset="">
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div class="post-top">
+                        <div class="post-name"><strong>Sam Jones </strong>posted</div>
+                        <div class="post-icon"><img src="/assets/images/facebook.png" alt="" srcset=""></div>
+                    </div>
+                    <div class="post-bottom">
+                        <!-- <img src="/assets/images/post-img.png" alt="" srcset=""> -->
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div class="post-top">
+                        <div class="post-name"><strong>Sam Jones </strong>twitted</div>
+                        <div class="post-icon"><img src="/assets/images/twitter.png" alt="" srcset=""></div>
+                    </div>
+                    <div class="post-bottom">
+                        <img class="post-bottom-img" src="/assets/images/post-img1.png" alt="" srcset="">
+                        <!-- <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo</p> -->
+                    </div>
+                </div>
+                <div class="post-icon-content">
+                    <div class="post-icon-text">
+                        <p>Connect with us on our social media accounts</p>
+                    </div>
+                    <div class="post-icon">
+                        <div><img class="social-icon" src="/assets/images/icon-youtube.png" alt="" srcset=""></div>
+                        <div><img class="social-icon" src="/assets/images/icon-twitter.png" alt="" srcset=""></div>
+                        <div><img class="social-icon" src="/assets/images/icon-tiktok.png" alt="" srcset=""></div>
+                        <div><img class="social-icon" src="/assets/images/icon-instagram.png" alt="" srcset=""></div>
+                        <div><img class="social-icon" src="/assets/images/icon-facebook.png" alt="" srcset=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

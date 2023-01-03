@@ -1,0 +1,95 @@
+/* p {
+    color: grey
+} */
+
+.card {
+    z-index: 0;
+    border: none;
+    position: relative;
+}
+
+.fs-title {
+    font-size: 25px;
+    color: var(--ap-red);
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left;
+}
+
+.purple-text {
+    color: var(--ap-red);
+    font-weight: normal;
+}
+
+.pbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 30px;
+    overflow: hidden;
+    background-color: rgb(189, 189, 189);
+    margin: -10px -20px 50px -20px;
+}
+
+ul#progressbar {
+    padding-inline-start: 0;
+    margin-top: 16px;
+}
+
+#progressbar li {
+    width: 200px;
+    height: 60px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: #133960;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 0 10px 0px 10px;
+    padding: 2px;
+    cursor: pointer;
+    float: left;
+    text-align: center;
+    list-style-type: none;
+}
+
+#progressbar li p {
+    color: #ffffff;
+    font-size: 15px;
+    margin: 0px;
+    line-height: 5px;
+}
+
+#progressbar li i {
+    color: #ffffff;
+}
+
+#progressbar li.active {
+    color: #133960;
+    background: #ffffff;
+}
+#progressbar li.active p,
+#progressbar li.active i {
+    color: #133960;
+}
+
+.progress {
+    height: 20px;
+}
+
+.progress-bar {
+    background-color: var(--ap-red);
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 575.98px) {
+    #progressbar li {
+        width: 135px;
+        margin: 0px 3px;
+    }
+}

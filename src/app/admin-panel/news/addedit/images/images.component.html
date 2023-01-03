@@ -1,0 +1,35 @@
+<div class="main-container">
+    <app-steps-template [step]="'images'"></app-steps-template>
+    <div class="row">
+        <div class="col-md-12 drag-drop-container">
+            <input type="file" style="display: none;" id="other-files" multiple>
+            <div class="images-containers-wrapper">
+                <div class="images-container">
+                    <div class="container">
+                        <p>Content</p>
+                        <quill-editor [(ngModel)]="dataToSend.content"></quill-editor>
+                        <div class="btn-box">
+                            <button class="btn" type="button" (click)="ds.step = 1">Previous</button>
+                            <button class="btn" type="button" (click)="save()" >Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <ng-template #confirmingTemplate>
+    <div class="modal-body text-center">
+        <p>Do you want to Delete all Files?</p>
+        <button type="button" class="green sm" (click)="mRef.hide()">No</button>
+        <button type="button" class="red sm" (click)="deleteAllFiles()">Yes</button>
+    </div>
+</ng-template> -->
+
+<!-- <ng-template #selectedConfirmingTemplate>
+    <div class="modal-body text-center">
+        <p>Do you want to Delete Selected Files?</p>
+        <button type="button" class="green sm" (click)="mRef.hide()">No</button>
+        <button type="button" class="red sm" (click)="deleteSelectedFiles()">Yes</button>
+    </div>
+</ng-template> -->

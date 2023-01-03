@@ -1,0 +1,376 @@
+<div class="section1">
+
+    <div class="tour-info">
+        <p> <i class="fas fa-briefcase"></i>Tours</p>
+        <p>{{tourDetailList.name | titlecase}}</p>
+        <div class="tour-detail">
+            <!-- <p><i class="fas fa-calendar-day p-1"></i>From: {{tourDetailList.start_date | date: 'd-MMM-y '}} To: {{tourDetailList.end_date | date: 'd-MMM-y '}}</p> -->
+            <p><b>Level :</b><span> {{tourDetailList.level | titlecase}}</span></p>
+            <p><i class="fas fa-user-friends p-1"></i><span>{{tourDetailList.gender | titlecase}}</span></p>
+            <p><b>Age :</b><span> U{{tourDetailList.age_category}}</span></p>
+        </div>
+
+    </div>
+    <button (click)="scroll(target)" class="reg-btn">GET QUOTE</button>
+
+
+</div>
+<div class="red-bar">
+    <ul>
+        <div class="dropdown">
+            <li>Tour<i class="fa fa-angle-down"></i></li>
+            <div class="dropdown-content">
+                <a [routerLink]="[ '/groups' ]">Groups</a>
+                <a [routerLink]="[ '/match-schedule' ]">Match Schedule</a>
+                <a [routerLink]="[ '/history' ]">History</a>
+                <a [routerLink]="[ '/rules' ]">Rules</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <li>Registration<i class="fa fa-angle-down"></i></li>
+            <div class="dropdown-content">
+                <a [routerLink]="[ '/prices' ]">Prices</a>
+                <a [routerLink]="[ '/registration' ]">Registration</a>
+                <a [routerLink]="[ '/terms-and-conditions' ]">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <li>Contact<i class="fa fa-angle-down"></i></li>
+            <div class="dropdown-content">
+                <a [routerLink]="[ '/contact-us' ]">Contact</a>
+                <a [routerLink]="[ '/about-us' ]">About us</a>
+                <a [routerLink]="[ '/faq' ]">FAQ</a>
+            </div>
+        </div>
+    </ul>
+
+</div>
+<div class="sec-2">
+    <div class="sec-heading">
+        <div class="line"></div>
+        <h5 class="heading">MFA Friendly Football Tour</h5>
+        <div class="side-txt">
+            <p>{{tourDetailList.description}}</p>
+        </div>
+    </div>
+    <div class="sec-img">
+        <img [defaultImage]="spinnerSVG" [lazyLoad]="ds.tournamentMainImg(tourId)">
+    </div>
+
+
+</div>
+<div class="sec-3">
+    <img src="/assets/images/slider.png" alt="">
+    <div class="sec-heading">
+        <div class="line"></div>
+        <h5 style="background-color: gainsboro;" class="heading">ltinerary</h5>
+        <!-- <p>MFA Friendly Football Tour</p> -->
+        <p>{{tourDetailList.name}}</p>
+    </div>
+    <div class="ltine">
+        <div class="day">
+            <div class="day-content">
+                <div class="shad">
+
+                </div>
+                <p class="one">Day</p>
+                <p class="two">01</p>
+
+            </div>
+        </div>
+        <div class="lti-side">
+            <div class="lti-side-content">
+                <p>{{tourDetailList.day_one_itinerary}}</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora quod corrupti culpa eveniet saepe amet repella !</p> -->
+                <img src="/assets/images/lte-img.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="ltine">
+        <div class="day">
+            <div class="day-content">
+                <div class="shad">
+
+                </div>
+                <p class="one">Day</p>
+                <p class="two">02</p>
+            </div>
+        </div>
+        <div class="lti-side">
+            <div class="lti-side-content">
+                <p>{{tourDetailList.day_two_itinerary}}</p>
+                <img src="/assets/images/lte-img.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="ltine">
+        <div class="day">
+            <div class="day-content">
+                <div class="shad">
+
+                </div>
+                <p class="one">Day</p>
+                <p class="two">03</p>
+            </div>
+        </div>
+        <div class="lti-side">
+            <div class="lti-side-content">
+                <p>{{tourDetailList.day_three_itinerary}}</p>
+                <img src="/assets/images/lte-img.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="ltine">
+        <div class="day">
+            <div class="day-content">
+                <div class="shad">
+
+                </div>
+                <p class="one">Day</p>
+                <p class="two">04</p>
+            </div>
+        </div>
+        <div class="lti-side">
+            <div class="lti-side-content">
+                <p>{{tourDetailList.day_four_itinerary}}</p>
+                <img src="/assets/images/lte-img.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="ltine">
+        <div class="day">
+            <div class="day-content">
+                <div class="shad">
+
+                </div>
+                <p class="one">Day</p>
+                <p class="two">05</p>
+            </div>
+        </div>
+        <div class="lti-side">
+            <div class="lti-side-content">
+                <p>{{tourDetailList.day_five_itinerary}}</p>
+                <img src="/assets/images/lte-img.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="ltie-btm">
+        <p>Are you interested in complete litinerary?</p>
+        <button (click)="scroll(target)">REQUEST QUOTE</button>
+    </div>
+</div>
+<div class="sec-4">
+    <div class="sec-heading">
+        <div class="line"></div>
+        <h5 class="heading">About Madrid</h5>
+    </div>
+    <div class="overview-text">
+        <p>{{tourDetailList.about_madrid}}</p>
+    </div>
+    <div class="tour-highlight">
+        <div class="tour-highlight-img">
+            <i class="fas fa-angle-left"></i>
+            <div class="tour-imgs">
+                <ng-container *ngFor="let img of tourDetailList.tournament_images">
+                    <img (click)="openGallery(tourDetailList.tournament_images)" [defaultImage]="spinnerSVG" [lazyLoad]="ds.tournamentImages(img.id)" />
+                </ng-container>
+                <!-- <img src="/assets/images/g1.png" alt="">
+                <img src="/assets/images/g2.png" alt="">
+                <img src="/assets/images/g3.png" alt="">
+                <img src="/assets/images/g4.png" alt=""> -->
+            </div>
+            <i class="fas fa-angle-right"></i>
+        </div>
+
+
+    </div>
+</div>
+<div #target class="sec-5">
+    <div class="sec-heading">
+        <div class="line"></div>
+        <h5 class="heading">Interested in {{tourDetailList.name}}?</h5>
+    </div>
+    <form [formGroup]="tourForm" (ngSubmit)="save(tourForm, f)" #f="ngForm">
+        <div class="forms-box">
+            <div class="form b1">
+                <h5>Contact Information</h5>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name:</label>
+                    <div class="col-sm-10">
+                        <input formControlName="name" type="text" class="form-control1" id="name" placeholder="Name" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.name , f)" class="errors">
+                            <p *ngIf="g.name.errors.required">Name is Required</p>
+                            <p *ngIf="g.name.errors.maxlength">Max length is {{ g.first_name.errors.maxlength.requiredLength }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                    <div class="col-sm-10">
+                        <input formControlName="email" type="email" id="email" placeholder="Email" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.email, f)" class="errors">
+                            <p *ngIf="g.email.errors.required">email is required</p>
+                            <p *ngIf="g.email.errors.email">Please enter valid email</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="phone" class="col-sm-2 col-form-label">Phone:</label>
+                    <div class="col-sm-10">
+                        <input formControlName="contact_no" type="text" id="phone" placeholder="Phone" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.contact_no, f)" class="errors">
+                            <p *ngIf="g.contact_no.errors.required">Required</p>
+                            <p *ngIf="g.contact_no.errors.maxlength">Max length{{ g.contact.errors.maxlength.requiredLength }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form b2">
+                <h5>Football Organization</h5>
+
+                <div class="form-group row">
+                    <label for="club" class="col-sm-2 col-form-label">Club:</label>
+                    <div class="col-sm-10">
+                        <input formControlName="club" type="text" id="club" placeholder="Club" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.club , f)" class="errors">
+                            <p *ngIf="g.club.errors.required">required</p>
+                            <p *ngIf="g.club.errors.maxlength">Max length {{ g.first_name.errors.maxlength.requiredLength }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="team" class="col-sm-2 col-form-label">Team:</label>
+                    <div class="col-sm-10">
+                        <input formControlName="team" type="team" id="tean" placeholder="Team" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.team , f)" class="errors">
+                            <p *ngIf="g.team.errors.required">required</p>
+                            <p *ngIf="g.team.errors.maxlength">Max length {{ g.first_name.errors.maxlength.requiredLength }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fun" class="col-sm-2 col-form-label">Function:</label>
+                    <div class="col-sm-10">
+                        <input formControlName="function" type="text" id="fun" placeholder="Function" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.function , f)" class="errors">
+                            <p *ngIf="g.function.errors.required">required</p>
+                            <p *ngIf="g.function.errors.maxlength">Max length {{ g.first_name.errors.maxlength.requiredLength }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form b3">
+                <h5>Travel Information</h5>
+
+                <div class="form-group row">
+                    <label for="players" class="col-sm-2 col-form-label">Players</label>
+                    <div class="col-sm-4">
+                        <input formControlName="players" type=number id="players" placeholder="Players" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.players , f)" class="errors">
+                            <p *ngIf="g.players.errors.required">required</p>
+                            <p *ngIf="g.players.errors.maxlength">Max length {{ g.first_name.errors.maxlength.requiredLength }}</p>
+                        </div>
+                    </div>
+                    <label for="staff" class="col-sm-2 col-form-label">Staff</label>
+                    <div class="col-sm-4">
+                        <input formControlName="staff" type="text" id="staff" placeholder="Staff" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.staff , f)" class="errors">
+                            <p *ngIf="g.staff.errors.required">required</p>
+                            <p *ngIf="g.staff.errors.maxlength">Max length {{ g.first_name.errors.maxlength.requiredLength }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="parents" class="col-sm-2 col-form-label">Parents</label>
+                    <div class="col-sm-4">
+                        <input formControlName="parents" type="text" id="parents" placeholder="Parents" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.parents , f)" class="errors">
+                            <p *ngIf="g.parents.errors.required">required</p>
+                            <p *ngIf="g.parents.errors.maxlength">Max length {{ g.first_name.errors.maxlength.requiredLength }}</p>
+                        </div>
+                    </div>
+
+
+                    <!-- <label for="gsize" class="col-sm-4 col-form-label">Group Size:</label>
+                    <div class="col-sm-8">
+                        <select formControlName="group" name="" id="gsize" [ngClass]="{'form-submitted': f.submitted}">
+                            <option value="null" [disabled]="true">Select group</option>
+                            <option value="players">Players</option>
+                            <option value="staff">Staff</option>
+                            <option value="parent-fans">Parents / Fans</option>
+                        </select>
+                        <div *ngIf="ui.checkErrors(g.group, f)" class="errors">
+                            <p *ngIf="g.group.errors.required">required</p>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="form-group row">
+                    <label for="from" class="col-sm-2 col-form-label">From:</label>
+                    <div class="col-sm-4">
+                        <input formControlName="from_date" type="text" style="padding: 6px;" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', adaptivePosition: true }" id="from" placeholder="From" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.from_date, f)" class="errors">
+                            <p *ngIf="g.from_date.errors.required">required</p>
+                        </div>
+                    </div>
+                    <label for="to" class="col-sm-2 col-form-label">To:</label>
+                    <div class="col-sm-4">
+                        <input formControlName="to_date" type="text" style="padding: 6px;" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', adaptivePosition: true }" id="to" placeholder="To" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.to_date, f)" class="errors">
+                            <p *ngIf="g.to_date.errors.required">required</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-0 row">
+                    <label for="phone" class="col-sm-4 col-form-label">Interests:</label>
+                    <div class="col-sm-8">
+                        <!-- <input type="text" class="form-control" id="phone" placeholder="Phone"> -->
+                        <input formControlName="strm" type="checkbox" id="tour1" value="1">
+                        <label for="tour1">
+                            <div style="font-size: 13px;">Stadium Tour Real Madrid</div>
+                        </label>
+                    </div>
+                    <label for="phone" class="col-sm-4 col-form-label"></label>
+
+                    <div class="col-sm-8">
+                        <input formControlName="stam" type="checkbox" id="tour2" value="1">
+                        <label for="tour2">
+                            <div style="font-size: 13px;">Stadium Tour Atletico Madrid</div>
+                        </label>
+                    </div>
+                    <label for="phone" class="col-sm-4 col-form-label"></label>
+
+                    <div class="col-sm-8">
+                        <input formControlName="sm" type="checkbox" id="tour3" value="1">
+                        <label for="tour3">
+                            <div style="font-size: 13px;">Sightseeing Madrid</div>
+                        </label>
+                    </div>
+                    <label for="phone" class="col-sm-4 col-form-label"></label>
+
+                    <div class="col-sm-8">
+                        <input formControlName="ccs" type="checkbox" id="tour4" value="1">
+                        <label for="tour4">
+                            <div style="font-size: 13px;">City Centre (shopping)</div>
+                        </label>
+                    </div>
+                    <label for="phone" class="col-sm-4 col-form-label"></label>
+
+                    <div class="col-sm-8">
+                        <input formControlName="vpm" type="checkbox" id="tour5" value="1">
+                        <label for="tour5">
+                            <div style="font-size: 13px;">Visit Professional Match</div>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form">
+                <h5>Extra Information</h5>
+                <textarea formControlName="description" placeholder="Please write the extra information here " [ngClass]="{'form-submitted': f.submitted}"></textarea>
+                <!-- <div class="form-group mb-0 row">
+                </div> -->
+            </div>
+            <button class="sendQuote" type="submit">YES WE ARE INTERESTED <br><span>SEND US QUOTE</span></button>
+        </div>
+    </form>
+</div>

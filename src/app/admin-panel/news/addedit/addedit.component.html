@@ -1,0 +1,94 @@
+<div class="main-container" *ngIf="dataService.step == 1">
+    <app-steps-template [step]="'details'"></app-steps-template>
+    <form *ngIf="dataStatus=='done'" [formGroup]="newsForm" (ngSubmit)="save(newsForm, f)" #f="ngForm">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 mb-1">
+                        <label class="mb-1">Title <span class="mendatory">*</span></label>
+                        <input formControlName="title" class="form-control mt-0" placeholder="Enter Title" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.title , f)" class="errors">
+                            <p *ngIf="g.title.errors.required">Title is required</p>
+                            <p *ngIf="g.title.errors.maxlength">Title should not exceeds {{ g.title.errors.maxlength.requiredLength }} Char}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-1">
+                        <label class="mb-0">Date <span class="mendatory">*</span></label>
+                        <input type="text" class="fadeIn" bsDatepicker [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY' }" formControlName="date" placeholder="Enter Date" [ngClass]="{'form-submitted': f.submitted}" />
+                        <div *ngIf="ui.checkErrors(g.date , f)" class="errors">
+                            <p *ngIf="g.date.errors.required">Date is required</p>
+                            <p *ngIf="g.date.errors.maxlength">Date should not exceeds {{ g.date.errors.maxlength.requiredLength }} Char}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-1">
+                        <label class="mb-1">Related Tournament <span class="mendatory">(optional)</span></label>
+                        <select id="category" formControlName="tournament_id" class="form-control mt-0" placeholder="Select tournament" [ngClass]="{'form-submitted': f.submitted}">
+                            <option [disabled]="true" value=null>Select</option>
+                            <ng-container *ngFor="let t of tournamentsList">
+                                <ng-container *ngIf="t.tournament_type == 'tournament'">
+                                    <option [value]="t.id">{{ t.name }}</option>
+                                </ng-container>
+                            </ng-container>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-12 mb-1">
+                        <label class="mb-0">Summary <span class="mendatory">*</span></label>
+                        <textarea class="fadeIn" formControlName="summary" rows="4" placeholder="Summary"></textarea>
+                        <div *ngIf="ui.checkErrors(g.summary , f)" class="errors">
+                            <p *ngIf="g.summary.errors.required">Summary is required</p>
+                            <p *ngIf="g.summary.errors.maxlength">Summary should not exceeds {{ g.summary.errors.maxlength.requiredLength }} Char}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-12 mb-1">
+                        <label class="mb-0">Content <span class="mendatory">*</span></label>
+                        <textarea class="fadeIn" formControlName="content" rows="4" placeholder="Content"></textarea>
+                        <div *ngIf="ui.checkErrors(g.content , f)" class="errors">
+                            <p *ngIf="g.content.errors.required">Content is required</p>
+                            <p *ngIf="g.content.errors.maxlength">Content should not exceeds {{ g.content.errors.maxlength.requiredLength }} Char}</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tut-pro-photo">
+                    <img [src]="thumbnail" id="banner-img">
+                    <input type="file" style="display: none;" id="thumbnail-image" (change)="onThumbnailChange($event, cropperModal)">
+                    <div class="text-center">
+                        <button type="button" class="green sm" (click)="browseThumbnail($event)" style="min-width: 140px">Browse Picture</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="green sm m-1">save</button>
+        <a [routerLink]="['/admin/news/list']"><button type="button" class="red sm ml-1">Cancel</button></a>
+
+    </form>
+    <ng-template #cropperModal>
+        <div class="modal-body">
+            <ng-scrollbar class="modal-scrollbar">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-wrapper">
+                            <h2 class="title" style="font-size: 20px;">Adjust Image Size</h2>
+                            <div>
+                                <button type="button" class="sm red" (click)="doneCroppingThumbnail()">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="270/225" [onlyScaleDown]="true" [roundCropper]="false" format="png" outputType="base64" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()" [alignImage]="'center'">
+                        </image-cropper>
+                    </div>
+                </div>
+            </ng-scrollbar>
+        </div>
+    </ng-template>
+</div>
+<app-images *ngIf="dataService.step == 2"></app-images>

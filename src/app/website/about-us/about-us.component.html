@@ -1,0 +1,85 @@
+<section class="about-section">
+    <div class="about-inner-section">
+        <div class="about-text-container">
+            <div class="about-heading">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-text">
+                <div [innerHtml]="content"></div>
+            </div>
+        </div>
+        <div style="display: none;" class="about-img-container"><img src="/assets/images/about-img.png" alt="" srcset=""></div>
+    </div>
+</section>
+
+<section class="tour-section" style="display: none;">
+    <div class="tour-inner-section">
+        <div class="tour-img-container"><img src="/assets/images/tour-img.png" alt="" srcset=""></div>
+        <div class="tour-text-container">
+            <div class="tour-heading">
+                <h2>Mission</h2>
+                <!-- <h1>Create Your Own Tour</h1> -->
+            </div>
+            <div class="about-text">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est</p>
+                <p>Lorem ipsum dolor sit amet. <br>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="contect-inner-section">
+        <div class="contact-heading">
+            <h2>Contact Us</h2>
+        </div>
+        <form [formGroup]="contactForm" #f="ngForm">
+            <div class="contact-inputs">
+                <div class="contact">
+                    <h1>Name<span class="mendatory">*</span></h1>
+                    <div class="inner-feilds">
+                        <input formControlName="name" type="text" placeholder="Enter Name" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.name, f)" class="errors">
+                            <p *ngIf="g.name.errors.required">Name is required</p>
+                            <p *ngIf="g.name.errors.maxlength">Name should be {{ g.name.errors.maxlength.requiredLength }} Characters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact">
+                    <h1>Email<span class="mendatory">*</span></h1>
+                    <div class="inner-feilds">
+                        <input formControlName="email" type="email" placeholder="Enter Email" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.email, f)" class="errors">
+                            <p *ngIf="g.email.errors.required">Email is required</p>
+                            <p *ngIf="g.email.errors.email">Email is invalid</p>
+                            <p *ngIf="g.email.errors.maxlength">Email should be {{ g.email.errors.maxlength.requiredLength }} Characters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact">
+                    <h1>Phone<span class="mendatory">*</span></h1>
+                    <div class="inner-feilds">
+                        <input formControlName="contact_no" type="text" placeholder="Enter Phone" [ngClass]="{'form-submitted': f.submitted}">
+                        <div *ngIf="ui.checkErrors(g.contact_no, f)" class="errors">
+                            <p *ngIf="g.contact_no.errors.required">Phone is required</p>
+                            <p *ngIf="g.contact_no.errors.maxlength">Phone should be {{ g.contact_no.errors.maxlength.requiredLength }} Characters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact">
+                    <h1>Message<span class="mendatory">*</span></h1>
+                    <div class="inner-feilds">
+                        <textarea formControlName="message" rows="5" type="text" placeholder="Enter Message" [ngClass]="{'form-submitted': f.submitted}"></textarea>
+                        <div *ngIf="ui.checkErrors(g.message, f)" class="errors">
+                            <p *ngIf="g.message.errors.required">Message is required</p>
+                            <p *ngIf="g.message.errors.maxlength">Message should be {{ g.message.errors.maxlength.requiredLength }} Characters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-btn">
+                <button type="submit" appSmartClick (smartClick)="sendInquiry(contactForm, f)">Send Us InQUIRY</button>
+            </div>
+        </form>
+    </div>
+</section>
